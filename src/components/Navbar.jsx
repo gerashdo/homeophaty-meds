@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom"
 
 
 export const Navbar = () => {
@@ -6,7 +7,13 @@ export const Navbar = () => {
     <>
         <nav>
             <ul>
-                <li>Medicamentos</li>
+                <li>
+                  <NavLink
+                    to="medicamentos"
+                  >
+                    Medicamentos
+                  </NavLink>
+                </li>
             </ul>
         </nav>
     </>

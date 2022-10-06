@@ -1,4 +1,5 @@
 import { MedList } from "../components/medicamentos/MedList"
+import { NewMedForm } from "../components/medicamentos/NewMedForm"
 
 
 export const MedsPage = () => {
@@ -14,6 +15,7 @@ export const MedsPage = () => {
                     <button type="button">Buscar</button>
                 </div>
                 <MedList />
+                <NewMedForm />
             </main>
              
         </>
