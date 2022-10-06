@@ -11,7 +11,6 @@ export const MainRouter = () => {
     return (
         <>
             <BrowserRouter>
-                <Navbar />
                 <Routes>
                     <Route path="/" element={ <MainPage />} />
                     <Route path="/medicamentos" element={ <MedsPage /> } />

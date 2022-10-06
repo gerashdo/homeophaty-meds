@@ -9,7 +9,7 @@ export const Navbar = () => {
             <ul>
                 <li>
                   <NavLink
-                    to="medicamentos"
+                    to="/medicamentos"
                   >
                     Medicamentos
                   </NavLink>
