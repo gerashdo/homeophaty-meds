@@ -1,20 +1,21 @@
 import { NavLink } from "react-router-dom"
 
+import "./navbar.css"
 
 export const Navbar = () => {
 
   return (
     <>
-      <div className="mainNavbar">
+      <div className="main-navbar">
         <nav>
             <ul>
-                <li>
-                  <NavLink
-                    to="/medicamentos"
-                    >
+                <NavLink
+                  to="/medicamentos"
+                >
+                  <li>
                     Medicamentos
-                  </NavLink>
-                </li>
+                  </li>
+                </NavLink>
             </ul>
         </nav>
       </div>

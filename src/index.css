@@ -2,6 +2,8 @@
   --color-dark: #04080f;
   --color-primary: #507DBC;
   --color-secondary: #5C946E;
+  --color-secondary-lighter: #6e9c7d;
+  --color-secondary-darker: #4e835f;
   --color-disabled: #F1F2EB;
   --color-success: #D7FDF0;
   
@@ -12,7 +14,7 @@
   font-weight: 400;
 
   color: var(--color-dark);
-  background-color: #fdfdfd;
+  background-color: #f2f2f2;
 }
 
 *,
@@ -36,27 +38,41 @@
 
 .main-container{
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 0.5fr 4fr 1fr;
   min-height: 100vh;
+  gap: 1rem;
 }
 
-.mainNavbar{
-  background-color: var(--color-secondary);
+.main-container > main {
+  min-height: 100%;
+  padding: 1rem 0rem;
+  gap: 1rem
 }
 
-nav ul a {
-  font-weight: 500;
-  color: white;
-  text-decoration: none;
+main .section {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
-a:hover {
-  color: var(--color-success);
+aside {
+  background-color: white;
+  padding: 1rem;
 }
 
-nav ul li {
-  list-style: none;
+select.process, input.process {
+  padding: 2px 5px;
+  border: 0;
+  border-bottom: 1px solid rgb(169, 169, 169);
+  outline: none;
 }
+
+input.interface {
+  padding: 0.5rem 1rem;
+  border: 0;
+  border-radius: 10px;
+}
+
 /* 
 body {
   margin: 0;

@@ -1,0 +1,39 @@
+
+.main-navbar{
+    background-color: var(--color-secondary);
+    padding: 1rem;
+}
+
+.main-navbar nav {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100%;
+}
+
+.main-navbar ul {
+    min-width: 100%;
+}
+
+.main-navbar ul li {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.main-navbar ul a {
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+  
+.main-navbar ul li:hover {
+    background-color: var(--color-secondary-lighter);
+}
+
+.main-navbar ul li:active {
+    background-color: var(--color-secondary-darker);
+}
+
+.main-navbar ul li {
+    list-style: none;
+}
