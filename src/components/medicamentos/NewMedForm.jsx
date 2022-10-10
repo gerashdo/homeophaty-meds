@@ -4,12 +4,19 @@ import { InnerMedsForm } from "./InnerMedsForm"
 const ch = ['6', '30', '200', '1000']
 export const NewMedForm = () => {
 
+    const innerMeds = [{
+        id: 1,
+        name: 'Aconitum',
+        ch: '30',
+        meds: []
+    }]
+
     return (
         <>
             <h5>Crear medicamento</h5>
-            <form>
+            <form className="form">
                 <div>
-                    <label for="med_name">Nombre</label>
+                    <label htmlFor="med_name">Nombre</label>
                     <input 
                         id="med_name" 
                         name="med_name"
@@ -17,7 +24,7 @@ export const NewMedForm = () => {
                     />
                 </div>
 
-                <div>
+                <div className="input-group-h">
                     <select 
                         id="med_ch" 
                         name="med_ch"
@@ -29,13 +36,29 @@ export const NewMedForm = () => {
                             ))
                         }
                     </select>
-                    <label for="med_ch">CH</label>
+                    <label 
+                        htmlFor="med_ch"
+                        className="group-label"
+                    >CH</label>
                 </div>
+                {
+                    innerMeds.length > 0 && (
+                        <div>
+                            <ul>
+                                {
+                                    innerMeds.map( med => (
+                                        <li key={ med.id }>{ med.name }</li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+                    )
+                }
 
                 <div>
-                    <label for="inner-meds">Agregar medicamentos</label>
+                    <label htmlFor="inner_meds">Agregar medicamentos</label>
                     <InnerMedsForm 
-                        id="inner-meds"
+                        id="inner_meds"
                     />
                 </div>
 

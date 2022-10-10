@@ -1,9 +1,18 @@
-import React from 'react'
+
+
+import './inner-meds.css'
 
 export const InnerMedsForm = () => {
+
+  const meds = []
+
   return (
-    <form>
-        <input name='inner_med_name' />
-    </form>
+    <div className='input process'>
+        <input 
+          name='inner_med_name'
+          className='inner-input'
+        />
+        <button>+</button>
+    </div>
   )
 }

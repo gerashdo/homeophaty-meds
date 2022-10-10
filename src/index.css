@@ -34,6 +34,7 @@
   margin: 0;
   padding: 0;
   font: inherit;
+  max-width: none;
 }
 
 .main-container{
@@ -55,22 +56,41 @@ main .section {
   border-radius: 1rem;
 }
 
-aside {
+.aside {
   background-color: white;
-  padding: 1rem;
+  padding: 2rem 3rem 2rem 1rem;
 }
 
-select.process, input.process {
+select.process, input.process, .input.process.icon {
+  width: 100%;
   padding: 2px 5px;
   border: 0;
   border-bottom: 1px solid rgb(169, 169, 169);
   outline: none;
 }
 
+select {
+  background-color: white;
+}
+
 input.interface {
   padding: 0.5rem 1rem;
   border: 0;
   border-radius: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem 0;
+  text-align: start;
+}
+
+.form .input.process, form .input-group-h {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 /* 

@@ -1,0 +1,19 @@
+
+
+
+input.inner-input {
+    padding: 2px 5px;
+    border: 0;
+    border-bottom: 1px solid rgb(169, 169, 169);
+    width: 100%;
+    outline: none;
+}
+
+.input.process button {
+    border: none;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.125rem 0.5rem;
+    border-radius: 25%;
+    cursor: pointer;
+}

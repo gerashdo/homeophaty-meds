@@ -24,7 +24,7 @@ export const MedsPage = () => {
                         <MedList />
                     </section>
                 </main>
-                <aside className="">
+                <aside className="aside">
                     <NewMedForm />
                 </aside>
             </TemplateSystemPage>
