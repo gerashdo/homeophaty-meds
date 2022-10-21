@@ -1,16 +1,17 @@
 import React from 'react'
 import { medList } from '../../helpers/medList'
+import { MedSimpleCard } from './MedSimpleCard'
+
+import './med-list.css'
 
 export const MedList = () => {
     const medsList = medList
     console.log(medsList)
     return (
-        <div id="med-list">
+        <div id="med-list" className='med-list'>
             {
                 medsList.map(med => (
-                    <div key={med.id}>
-                        <h5> {med.name} {med.ch }</h5>
-                    </div>
+                    <MedSimpleCard  key={ med.id } medicamento={ med } />
                 ))
             }
         </div>

@@ -16,10 +16,9 @@ export const MedsPage = () => {
                             <input 
                                 id="med-search" 
                                 type="text"
-                                className="interface"
+                                className="interface med-search"
                                 placeholder="Buscar"
                             />
-                            <button type="button">Buscar</button>
                         </div>
                         <MedList />
                     </section>
