@@ -12,7 +12,11 @@ export const InnerMedsForm = () => {
           name='inner_med_name'
           className='inner-input'
         />
-        <button>+</button>
+        <button
+          className='primary'
+        >
+          +
+        </button>
     </div>
   )
 }

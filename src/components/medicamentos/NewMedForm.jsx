@@ -1,4 +1,5 @@
 import { InnerMedsForm } from "./InnerMedsForm"
+import { MedSmallCard } from "./MedSmallCard"
 
 
 const ch = ['6', '30', '200', '1000']
@@ -47,7 +48,7 @@ export const NewMedForm = () => {
                             <ul>
                                 {
                                     innerMeds.map( med => (
-                                        <li key={ med.id }>{ med.name }</li>
+                                        <MedSmallCard key={ med.id } medicamento={ med } />
                                     ))
                                 }
                             </ul>
@@ -62,7 +63,12 @@ export const NewMedForm = () => {
                     />
                 </div>
 
-                <input type="submit" value="Guardar" />
+                <button 
+                    type="submit"
+                    className="primary"
+                >
+                    Guardar
+                </button>
             </form>
         </>
     )

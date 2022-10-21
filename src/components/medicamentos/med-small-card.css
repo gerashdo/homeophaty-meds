@@ -1,0 +1,21 @@
+
+.med-small-card {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 1rem;
+    border-left: 3px solid var(--color-primary);
+    transition: all 0.1s ease;
+}
+
+.med-small-card:hover {
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+.cancel-button {
+    display: flex;
+    align-items: center;
+    color: var(--color-negative);
+    cursor: pointer;
+    font-size: 1.25rem;
+}
