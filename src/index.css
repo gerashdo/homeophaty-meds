@@ -1,20 +1,28 @@
 :root {
   --color-dark: #04080f;
   --color-primary: #507DBC;
+  --color-primary-lighter: #699adf;
+  --color-primary-darker: #3d6294;
   --color-secondary: #5C946E;
   --color-secondary-lighter: #6e9c7d;
   --color-secondary-darker: #4e835f;
   --color-disabled: #F1F2EB;
   --color-success: #D7FDF0;
+  --color-gray-background: #f2f2f2;
+
+  --font-bold: 700;
+  --font-normal: 400;
+  --font-size-normal: 16px;
+  --font-size-subtitle: 1.25rem;
   
   
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: var(--font-size-normal);
   line-height: 24px;
-  font-weight: 400;
+  font-weight: var(--font-normal);
 
   color: var(--color-dark);
-  background-color: #f2f2f2;
+  background-color: var(--color-gray-background);
 }
 
 *,
@@ -75,8 +83,10 @@ select {
 
 input.interface {
   padding: 0.5rem 1rem;
+  background-color: var(--color-gray-background);
   border: 0;
   border-radius: 10px;
+  outline: none;
 }
 
 .form {
@@ -91,6 +101,30 @@ input.interface {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+
+
+
+/* Utilities */
+button {
+  border: 0;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  transition: all 0.1s ease-in;
+}
+
+button.primary {
+  background-color: var(--color-primary);
+  border-radius: 30px;
+}
+
+button.primary:hover{
+  background-color: var(--color-primary-lighter);
+}
+
+button.primary:active{
+  background-color: var(--color-primary-darker);
 }
 
 /* 
