@@ -6,7 +6,6 @@ import "./meds-page.css"
 
 
 export const MedsPage = () => {
-    
     return (
         <>
             <TemplateSystemPage>

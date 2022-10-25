@@ -1,4 +1,4 @@
-import { medList } from "../helpers/medList"
+
 import { TemplateSystemPage } from "./TemplateSystemPage"
 
 
