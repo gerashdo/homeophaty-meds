@@ -1,0 +1,23 @@
+
+.dinamic-selector{
+    background-color: var(--color-gray-background);
+    border-radius: 0 0px 10px 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-width: 83.5%;
+    max-height: 200px;
+    overflow: auto;
+}
+
+.dinamic-selector ul {
+    list-style: none;
+}
+
+.dinamic-selector ul li {
+    padding: 0.5rem 1rem;
+}
+
+.dinamic-selector ul li:hover {
+    background-color: var(--color-primary-lighter);
+    color: white;
+}
