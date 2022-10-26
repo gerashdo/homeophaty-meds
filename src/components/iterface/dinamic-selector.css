@@ -3,10 +3,11 @@
     background-color: var(--color-gray-background);
     border-radius: 0 0px 10px 10px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-    position: relative;
-    max-width: 83.5%;
+    position: absolute;
+    width: 100%;
     max-height: 200px;
     overflow: auto;
+    top: 40px;
 }
 
 .dinamic-selector ul {
@@ -15,6 +16,7 @@
 
 .dinamic-selector ul li {
     padding: 0.5rem 1rem;
+    cursor: pointer;
 }
 
 .dinamic-selector ul li:hover {

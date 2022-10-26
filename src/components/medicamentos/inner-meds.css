@@ -17,3 +17,11 @@ input.inner-input {
     border-radius: 25%;
     cursor: pointer;
 }
+
+.relative {
+    position: relative;
+}
+
+.horizontal-input-button{
+    display: flex;
+}
