@@ -10,7 +10,8 @@ export const DinamicSelector = ({ resetValues, valueForFilter }) => {
     // Eliminar los espacios de un [] de strings para crear una sola
     // con todos los valores del arreglo
     const deleteStringWhiteSpaces = ( strings ) => {
-        let completeString
+        let completeString = ""
+        
         strings.map( str => {
             completeString += str.split(" ").join('')
         })
@@ -23,7 +24,7 @@ export const DinamicSelector = ({ resetValues, valueForFilter }) => {
             const valuesFiltered = resetValues
                 .filter( val => (
                     deleteStringWhiteSpaces([ val.name, val.ch ])
-                        .toLowerCase().includes(deleteStringWhiteSpaces([ valueForFilter ]))
+                        .toLowerCase().includes( deleteStringWhiteSpaces([ valueForFilter ]).toLowerCase() )
                 ))
 
             setValuesForUse( valuesFiltered )
