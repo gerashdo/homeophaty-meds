@@ -2,11 +2,10 @@
 import { useEffect, useState } from 'react'
 import './dinamic-selector.css'
 
-export const DinamicSelector = ({ resetValues, valueForFilter }) => {
+export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue }) => {
 
     const [valuesForUse, setValuesForUse] = useState( resetValues )
     
-
     // Eliminar los espacios de un [] de strings para crear una sola
     // con todos los valores del arreglo
     const deleteStringWhiteSpaces = ( strings ) => {
@@ -35,7 +34,10 @@ export const DinamicSelector = ({ resetValues, valueForFilter }) => {
     //     second
     //   }
     }, [valueForFilter, resetValues])
-    
+
+    const setSelectedValue = ({ target }) => {
+        onSetValue( target.innerText )
+    }
 
     return (
         <div
@@ -45,7 +47,13 @@ export const DinamicSelector = ({ resetValues, valueForFilter }) => {
                 {
                     valuesForUse.length > 0 
                     ? valuesForUse.map( med => (
-                        <li key={ med.id }>{ med.name } { med.ch }</li>
+                        <li 
+                            key={ med.id }
+                            id={ med.id }
+                            onMouseDown={ setSelectedValue }
+                        >
+                            { med.name } { med.ch }
+                        </li>
                     ))
                     : <li>Sin resultados</li>
                 }
