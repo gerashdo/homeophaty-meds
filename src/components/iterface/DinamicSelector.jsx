@@ -5,15 +5,27 @@ import './dinamic-selector.css'
 export const DinamicSelector = ({ resetValues, valueForFilter }) => {
 
     const [valuesForUse, setValuesForUse] = useState( resetValues )
-    console.log(valuesForUse)
+    
+
+    // Eliminar los espacios de un [] de strings para crear una sola
+    // con todos los valores del arreglo
+    const deleteStringWhiteSpaces = ( strings ) => {
+        let completeString
+        strings.map( str => {
+            completeString += str.split(" ").join('')
+        })
+
+        return completeString
+    }
 
     useEffect(() => {
         if( valueForFilter ){
-            // TODO: Eliminar espacios y juntar el ch al string
             const valuesFiltered = resetValues
-                .filter( val => {
-                    val.name.toLowerCase().includes( valueForFilter )
-                })
+                .filter( val => (
+                    deleteStringWhiteSpaces([ val.name, val.ch ])
+                        .toLowerCase().includes(deleteStringWhiteSpaces([ valueForFilter ]))
+                ))
+
             setValuesForUse( valuesFiltered )
         }else{
             setValuesForUse( resetValues )
