@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import './dinamic-selector.css'
 
-export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue }) => {
+export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSetValueId }) => {
 
     const [valuesForUse, setValuesForUse] = useState( resetValues )
     
@@ -37,6 +37,7 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue }) => 
 
     const setSelectedValue = ({ target }) => {
         onSetValue( target.innerText )
+        onSetValueId( target.id )
     }
 
     return (
