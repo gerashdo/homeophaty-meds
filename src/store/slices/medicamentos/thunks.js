@@ -1,5 +1,5 @@
 import { fetchSinToken } from "../../../hooks/apiFetch"
-import { setMedicamentos, startLoadingMedicamentos } from "./medicamentoSlice"
+import { addMedicamento, setMedicamentos, startLoadingMedicamentos } from "./medicamentoSlice"
 
 
 export const getMedicamentos = ( page = 0 ) => {
@@ -15,6 +15,24 @@ export const getMedicamentos = ( page = 0 ) => {
                 page: page + 1,
                 medicamentos: data.medicines
             }))
+        }
+    }
+}
+
+export const addNewMedicamento = ( medicamento ) => {
+    return async( dispatch, getState ) => {
+        try {
+            const response = await fetchSinToken('medicine', medicamento, 'POST')
+            const data = await response.json()
+    
+            if( data.ok ){
+                dispatch( addMedicamento({ 
+                    medicamento: data.medicine 
+                }))
+            }
+            
+        } catch (error) {
+            console.log(error)
         }
     }
 }

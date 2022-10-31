@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { fetchSinToken } from "../../hooks/apiFetch"
+import { useDispatch } from "react-redux"
 import { useForm } from "../../hooks/useForm"
+import { addNewMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
 import { MedSmallCard } from "./MedSmallCard"
 
@@ -8,25 +9,21 @@ import { MedSmallCard } from "./MedSmallCard"
 const chOptions = ['-----','6', '30', '200', '1000']
 export const NewMedForm = () => {
 
+    const dispatch = useDispatch()
+
     const [ innerMeds, changeInnerMeds ] = useState([])
     const [ values, handleChange ] = useForm({ name:'', ch:'' })
     const { name, ch } = values
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        try {
-            const data = {
-                name,
-                ch,
-                medicines: innerMeds.map( med => med.id )
-            }
-            console.log(data)
-            const response = await fetchSinToken('medicine', data, 'POST')
-            console.log(await response.json())
-            
-        } catch (error) {
-            console.log(error)
+        
+        const data = {
+            name,
+            ch,
+            medicines: innerMeds.map( med => med.id )
         }
+        dispatch( addNewMedicamento( data ) )
     }
 
     return (

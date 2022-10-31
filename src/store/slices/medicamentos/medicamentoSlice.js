@@ -17,9 +17,12 @@ export const medicamentoSlice = createSlice({
             state.isLoading = false
             state.page = action.payload.page
             state.medicamentos = action.payload.medicamentos
+        },
+        addMedicamento: (state, action ) => {
+            state.medicamentos = [ ...state.medicamentos, action.payload.medicamento ]
         }
 
     },
 })
 
-export const { incrementByAmount, startLoadingMedicamentos, setMedicamentos } = medicamentoSlice.actions
+export const { startLoadingMedicamentos, setMedicamentos, addMedicamento } = medicamentoSlice.actions
