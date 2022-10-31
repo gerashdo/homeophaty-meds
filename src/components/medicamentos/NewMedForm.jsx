@@ -31,6 +31,10 @@ export const NewMedForm = () => {
         reset()
     }
 
+    const handleRemoveInnerMed = ( id ) => {
+        changeInnerMeds( innerMeds.filter( med => med.id !== id ) )
+    }
+
     return (
         <>
             <h5>Crear medicamento</h5>
@@ -74,7 +78,11 @@ export const NewMedForm = () => {
                             <ul>
                                 {
                                     innerMeds.map( med => (
-                                        <MedSmallCard key={ med.id } medicamento={ med } />
+                                        <MedSmallCard 
+                                            key={ med.id } 
+                                            medicamento={ med }
+                                            onCloseInnerMed={ handleRemoveInnerMed }
+                                        />
                                     ))
                                 }
                             </ul>
