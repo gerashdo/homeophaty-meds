@@ -8,7 +8,7 @@ import './inner-meds.css'
 
 export const InnerMedsForm = ({ onChangeInnerMeds, innerMeds }) => {
   const { medicamentos } = useSelector( state => state.medicamento )
-  const [ values, handleChange, setValues ] = useForm({ medicamento: '' })
+  const [ values, handleChange, setValues, reset ] = useForm({ medicamento: '' })
   const { medicamento } = values
   const [ focused, setFocused ] = useState( false )
   const [ valueId, setValueId ] = useState('')
@@ -24,12 +24,15 @@ export const InnerMedsForm = ({ onChangeInnerMeds, innerMeds }) => {
   const handleAddMedicine = (e) => {
     e.preventDefault()
     const result = medicamentos.find( med => med.id === valueId )
+
     if( result ){
       onChangeInnerMeds([
         ...innerMeds,
         result
       ])
     }
+
+    reset()
   }
 
   return (
