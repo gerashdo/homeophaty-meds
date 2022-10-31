@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
+import { formatMedData } from "../../helpers"
 import { useForm } from "../../hooks/useForm"
 import { addNewMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
@@ -12,18 +13,22 @@ export const NewMedForm = () => {
     const dispatch = useDispatch()
 
     const [ innerMeds, changeInnerMeds ] = useState([])
-    const [ values, handleChange ] = useForm({ name:'', ch:'' })
+    const [ values, handleChange, ,reset ] = useForm({ name:'', ch:'' })
     const { name, ch } = values
 
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        const data = {
+        const data = formatMedData({
             name,
             ch,
             medicines: innerMeds.map( med => med.id )
-        }
+        })
+
         dispatch( addNewMedicamento( data ) )
+
+        changeInnerMeds([])
+        reset()
     }
 
     return (
