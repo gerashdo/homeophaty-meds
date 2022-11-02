@@ -1,11 +1,16 @@
 import { MedList } from "../components/medicamentos/MedList"
 import { NewMedForm } from "../components/medicamentos/NewMedForm"
 import { TemplateSystemPage } from "./TemplateSystemPage"
+import { useForm } from "../hooks/useForm"
 
 import "./meds-page.css"
 
 
 export const MedsPage = () => {
+
+    const [ values, handleChange ] = useForm({ medName: ''})
+    const { medName } = values
+
     return (
         <>
             <TemplateSystemPage>
@@ -17,9 +22,14 @@ export const MedsPage = () => {
                                 type="text"
                                 className="interface med-search"
                                 placeholder="Buscar"
+                                name="medName"
+                                onChange={ handleChange }
+                                value={ medName }
                             />
                         </div>
-                        <MedList />
+                        <MedList
+                            searchVariable={ medName }
+                        />
                     </section>
                 </main>
                 <aside className="aside">
