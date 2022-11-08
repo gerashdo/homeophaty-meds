@@ -1,0 +1,41 @@
+
+.med-titlename h3 {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-bold);
+    margin: 1rem 0;
+}
+
+div.med-data{
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    justify-content: center;
+}
+
+div.med-data h4{
+    text-align: start;
+    margin: 1rem 0 1rem 0.25rem;
+    font-weight: var(--font-bold);
+}
+
+div.med-data div.inner-med-list {
+    min-width: 30%;
+}
+
+div.med-data ul {
+    width: 100%;
+}
+
+div.med-data form {
+    min-width: 50%;
+    width: 80%;
+}
+
+div.med-data form textarea {
+    width: 100%;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var( --color-gray-background);
+    resize: none;
+    padding: 1rem;
+}
