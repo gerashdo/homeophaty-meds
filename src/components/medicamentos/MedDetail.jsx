@@ -1,6 +1,7 @@
 import { MedSmallCard } from "./MedSmallCard"
 import { useForm } from "../../hooks/useForm"
 
+import './med-detail.css'
 
 export const MedDetail = ({ medicamento }) => {
     const [ values, handleChange ] = useForm({ descripcion: ''})
@@ -17,25 +18,32 @@ export const MedDetail = ({ medicamento }) => {
             </div>
             <div className="med-data">
                 {
-                    medicamento.medicines
+                    medicamento.medicines.length > 0
                     && 
-                    (<ul>
-                        {
-                            medicamento.medicines.map( med => (
-                                <MedSmallCard
-                                    key={ med._id } 
-                                    medicamento={ med }
-                                    onCloseInnerMed={ handleRemoveMed }
-                                />
-                            ))
-                        }
-                    </ul>)
+                    (
+                    <div className="inner-med-list">
+                        <h4>Medicamentos</h4>
+                        <ul>
+                            {
+                                medicamento.medicines.map( med => (
+                                    <MedSmallCard
+                                        key={ med._id } 
+                                        medicamento={ med }
+                                        onCloseInnerMed={ handleRemoveMed }
+                                    />
+                                ))
+                            }
+                        </ul>
+                    </div>
+                    )
                 }
                 <form action="">
+                    <h4>Prescripcion</h4>
                     <textarea 
                         name="descripcion"
                         value={ descripcion }
                         onChange={ handleChange }
+                        rows='10'
                     />
                 </form>
             </div>
