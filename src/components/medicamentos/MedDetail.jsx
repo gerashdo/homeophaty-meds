@@ -7,6 +7,11 @@ export const MedDetail = ({ medicamento }) => {
     const [ values, handleChange ] = useForm({ descripcion: ''})
     const { descripcion } = values
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        console.log( descripcion )
+    }
+
     const handleRemoveMed = ( id ) => {
         console.log( id )
     }
@@ -37,7 +42,9 @@ export const MedDetail = ({ medicamento }) => {
                     </div>
                     )
                 }
-                <form action="">
+                <form
+                    onSubmit={ handleSubmit }
+                >
                     <h4>Prescripcion</h4>
                     <textarea 
                         name="descripcion"
@@ -45,6 +52,12 @@ export const MedDetail = ({ medicamento }) => {
                         onChange={ handleChange }
                         rows='10'
                     />
+                    <div className="submit-button-container">
+                        <button 
+                            type="submit"
+                            className="primary"
+                        >Guardar descripción</button>
+                    </div>
                 </form>
             </div>
         </>
