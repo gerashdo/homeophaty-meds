@@ -12,7 +12,6 @@ export const MedDetail = ({ medicamento }) => {
     
     return (
         <>
-        
             <div className="med-titlename">
                 <h3>{ medicamento.name } { medicamento.ch }</h3>
             </div>
@@ -24,7 +23,7 @@ export const MedDetail = ({ medicamento }) => {
                         {
                             medicamento.medicines.map( med => (
                                 <MedSmallCard
-                                    key={ med.id } 
+                                    key={ med._id } 
                                     medicamento={ med }
                                     onCloseInnerMed={ handleRemoveMed }
                                 />
