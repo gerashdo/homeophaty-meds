@@ -18,7 +18,7 @@ export const MedSmallCard = ({ medicamento, onCloseInnerMed }) => {
             </div>
             <div 
                 className="cancel-button"
-                id={ medicamento.id }
+                id={ medicamento.id || medicamento._id}
                 onClick={ handleCloseCard }
             >
                 <BsFillXCircleFill />
