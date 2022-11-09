@@ -40,7 +40,7 @@ export const MedDetail = ({ medicamento }) => {
                 <h3>{ medicamento.name } { medicamento.ch }</h3>
             </div>
             <div className="med-data">
-                // TODO: No mostrar el formulario si tiene un ch el medicamento
+                {/* TODO: No mostrar el formulario si tiene un ch el medicamento  */}
                 <div className="inner-med-list">
                     <h4>Medicamentos</h4>
                     <InnerMedsForm 
