@@ -11,6 +11,7 @@ export const MedDetail = ({ medicamento }) => {
     const [ values, handleChange ] = useForm({ descripcion: ''})
     const { descripcion } = values
 
+    // TODO: Agregar dispatch para guardar la descripcion del medicamento
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log( descripcion )
