@@ -6,6 +6,9 @@ import { DinamicSelector } from '../iterface/DinamicSelector';
 
 import './inner-meds.css'
 
+// Parametros
+// onChangeInnerMeds: Accion a realizar cuando se agregue un nuevo medicamento
+// innerMeds: Lista de innerMeds actuales
 export const InnerMedsForm = ({ onChangeInnerMeds, innerMeds }) => {
   const { medicamentos } = useSelector( state => state.medicamento )
   const [ values, handleChange, setValues, reset ] = useForm({ medicamento: '' })
@@ -28,7 +31,7 @@ export const InnerMedsForm = ({ onChangeInnerMeds, innerMeds }) => {
     if( result ){
       onChangeInnerMeds([
         ...innerMeds,
-        result
+        { ...result, '_id': result.id }
       ])
     }
 
