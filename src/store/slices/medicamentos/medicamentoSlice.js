@@ -20,9 +20,13 @@ export const medicamentoSlice = createSlice({
         },
         addMedicamento: (state, action ) => {
             state.medicamentos = [ ...state.medicamentos, action.payload.medicamento ]
+        },
+        updateMedicamento: ( state, action ) => {
+            state.medicamentos = state.medicamentos.map( med => (
+                med.id === action.payload.id ? action.payload : med
+            ))
         }
-
     },
 })
 
-export const { startLoadingMedicamentos, setMedicamentos, addMedicamento } = medicamentoSlice.actions
+export const { startLoadingMedicamentos, setMedicamentos, addMedicamento, updateMedicamento } = medicamentoSlice.actions
