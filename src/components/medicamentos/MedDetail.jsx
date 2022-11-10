@@ -41,31 +41,35 @@ export const MedDetail = ({ medicamento }) => {
             </div>
             <div className="med-data">
                 {/* TODO: No mostrar el formulario si tiene un ch el medicamento  */}
-                <div className="inner-med-list">
-                    <h4>Medicamentos</h4>
-                    <InnerMedsForm 
-                        onChangeInnerMeds={ handleOnChangeInnerMeds }
-                        innerMeds={ medicamento.medicines }
-                    />
-                    {
-                        medicamento.medicines.length > 0
-                        && 
-                        (
-                            <>
-                                {
-                                    medicamento.medicines.map( med => {
-                                        console.log( medicamento )
-                                        return (<MedSmallCard
-                                            key={ med._id || med.id } 
-                                            medicamento={ med }
-                                            onCloseInnerMed={ handleRemoveMed }
-                                        />)
-                                    })
-                                }
-                            </>
-                        )
-                    }
-                </div>
+                {
+                    medicamento.ch
+                    ? null 
+                    :(<div className="inner-med-list">
+                        <h4>Medicamentos</h4>
+                        <InnerMedsForm 
+                            onChangeInnerMeds={ handleOnChangeInnerMeds }
+                            innerMeds={ medicamento.medicines }
+                        />
+                        {
+                            medicamento.medicines.length > 0
+                            && 
+                            (
+                                <>
+                                    {
+                                        medicamento.medicines.map( med => {
+                                            console.log( medicamento )
+                                            return (<MedSmallCard
+                                                key={ med._id || med.id } 
+                                                medicamento={ med }
+                                                onCloseInnerMed={ handleRemoveMed }
+                                            />)
+                                        })
+                                    }
+                                </>
+                            )
+                        }
+                    </div>)
+                }
                 <form
                     onSubmit={ handleSubmit }
                 >
