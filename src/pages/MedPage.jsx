@@ -18,7 +18,6 @@ export const MedPage = () => {
     useEffect(() => {
       if( medicamentos ){
         setMedicamento( getMedById( medId, medicamentos ) )
-        console.log(medicamento)
       }
     }, [medicamentos, medId])
     

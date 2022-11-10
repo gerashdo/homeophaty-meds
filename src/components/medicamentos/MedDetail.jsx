@@ -8,13 +8,17 @@ import { InnerMedsForm } from "./InnerMedsForm"
 
 export const MedDetail = ({ medicamento }) => {
     const dispatch = useDispatch()
-    const [ values, handleChange ] = useForm({ descripcion: ''})
+    const [ values, handleChange ] = useForm({ descripcion: medicamento.description })
     const { descripcion } = values
 
     // TODO: Agregar dispatch para guardar la descripcion del medicamento
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log( descripcion )
+        // TODO: Utilizar un estas seguro por si viene vacio
+        dispatch( startUpdateMedicamento( medicamento.id, { 
+            ...medicamento,
+            description: descripcion
+        }))
     }
 
     const handleRemoveMed = ( id ) => {
@@ -56,14 +60,11 @@ export const MedDetail = ({ medicamento }) => {
                             (
                                 <>
                                     {
-                                        medicamento.medicines.map( med => {
-                                            console.log( medicamento )
-                                            return (<MedSmallCard
-                                                key={ med._id || med.id } 
-                                                medicamento={ med }
-                                                onCloseInnerMed={ handleRemoveMed }
-                                            />)
-                                        })
+                                        medicamento.medicines.map( med => (<MedSmallCard
+                                            key={ med._id || med.id } 
+                                            medicamento={ med }
+                                            onCloseInnerMed={ handleRemoveMed }
+                                        />))
                                     }
                                 </>
                             )
