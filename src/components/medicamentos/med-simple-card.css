@@ -20,3 +20,8 @@
     font-weight: var(--font-bold);
     font-size: var(--font-size-subtitle);
 }
+
+button a {
+    text-decoration: none;
+    color: white;
+}
