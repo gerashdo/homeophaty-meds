@@ -5,6 +5,7 @@ import { useSelector } from "react-redux"
 import { TemplateSystemPage } from "./TemplateSystemPage"
 import { MedDetail } from "../components/medicamentos/MedDetail"
 import { getMedById } from "../helpers"
+import { NewMedForm } from "../components/medicamentos/NewMedForm"
 
 import './med-page.css'
 
@@ -37,6 +38,9 @@ export const MedPage = () => {
                     }
                 </section>
             </main>
+            <aside className="aside">
+                <NewMedForm />
+            </aside>
         </TemplateSystemPage>
     )
 }

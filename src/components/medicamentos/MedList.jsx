@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { MedSimpleCard } from './MedSimpleCard'
 import { searchStringInMed } from '../../helpers'
+import { MedCard } from './MedCard'
 
 import './med-list.css'
 
@@ -23,7 +23,7 @@ export const MedList = ({ searchVariable }) => {
         <div id="med-list" className='med-list'>
             {
                 medsList.map(med => (
-                    <MedSimpleCard  key={ med.id } medicamento={ med } />
+                    <MedCard  key={ med.id } medicamento={ med } />
                 ))
             }
         </div>
