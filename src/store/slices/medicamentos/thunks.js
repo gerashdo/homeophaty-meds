@@ -1,4 +1,5 @@
 import { fetchSinToken } from "../../../hooks/apiFetch"
+import { startAlert } from "../ui"
 import { addMedicamento, setMedicamentos, startLoadingMedicamentos, updateMedicamento } from "./medicamentoSlice"
 
 
@@ -29,6 +30,15 @@ export const addNewMedicamento = ( medicamento ) => {
                 dispatch( addMedicamento({ 
                     medicamento: data.medicine 
                 }))
+                dispatch( startAlert({
+                    alertMessage: 'Nuevo medicamento guardado',
+                    alertType: 'success'
+                }))
+            }else{
+                dispatch( startAlert({
+                    alertMessage: data.msg,
+                    alertType: 'error'
+                }) )
             }
             
         } catch (error) {
