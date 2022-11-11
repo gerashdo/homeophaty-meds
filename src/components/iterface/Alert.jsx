@@ -17,7 +17,7 @@ export const Alert = ({ children }) => {
         if( alertActive ){
             setTimeout( () => {
                closeAlert()
-            }, 10000)
+            }, 8000)
         }
     }, [ alertActive ])
 
