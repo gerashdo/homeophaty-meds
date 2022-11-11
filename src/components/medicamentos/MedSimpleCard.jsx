@@ -10,11 +10,11 @@ export const MedSimpleCard = ({ medicamento }) => {
             { medicamento.name } { medicamento.ch }
         </div>
         <div>
-            <button className='primary'>
-              <Link to={ `/medicamentos/${ medicamento.id }` }>
+            <Link to={ `/medicamentos/${ medicamento.id }` }>
+              <button className='primary'>
                 Ver detalles
-              </Link>
-            </button>
+              </button>
+            </Link>
         </div>
     </div>
   )

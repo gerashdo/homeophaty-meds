@@ -9,13 +9,8 @@ input.inner-input {
     outline: none;
 }
 
-.input.process button {
-    border: none;
-    background-color: var(--color-primary);
-    color: white;
-    padding: 0.125rem 0.5rem;
-    border-radius: 25%;
-    cursor: pointer;
+.input.process {
+    width: 100%;
 }
 
 .relative {
@@ -24,4 +19,8 @@ input.inner-input {
 
 .horizontal-input-button{
     display: flex;
+    width: 100%;
+    align-items: flex-end;
+    gap: 1rem;
+    margin: 1rem 0;
 }
