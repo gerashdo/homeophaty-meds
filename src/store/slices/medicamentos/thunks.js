@@ -59,8 +59,15 @@ export const startUpdateMedicamento = ( medId, medData ) => {
 
             if( data.ok ){
                 dispatch( updateMedicamento( data.medicine ) )
+                dispatch( startAlert({
+                    alertMessage: 'El medicamento se ha modificado exitosamente',
+                    alertType: 'success'
+                }))
             }else{
-                console.log( data )
+                dispatch( startAlert({
+                    alertMessage: data.msg,
+                    alertType: 'error'
+                }))
             }
             
         } catch (error) {
