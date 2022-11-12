@@ -12,6 +12,8 @@
   --color-gray-background: #f2f2f2;
   --color-gray-background-darker: #dadada;
   --color-negative: #A53F2B;
+  --color-negative-darker: #8e3b2b;
+  --color-negative-lighter: #b2523f;
 
   --font-bold: 700;
   --font-normal: 400;
@@ -133,6 +135,19 @@ button.primary:hover{
 
 button.primary:active{
   background-color: var(--color-primary-darker);
+}
+
+button.negative {
+  background-color: var(--color-negative);
+  border-radius: 30px;
+}
+
+button.negative:hover{
+  background-color: var(--color-negative-lighter);
+}
+
+button.negative:active{
+  background-color: var(--color-negative-darker);
 }
 
 /* 

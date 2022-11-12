@@ -17,13 +17,21 @@ export const MedList = ({ searchVariable }) => {
         setMedsList( medicamentos )
       }
     }, [ medicamentos, searchVariable ])
+
+    const onCloseCard = ( medId ) => {
+      console.log( medId )
+    }
     
 
     return (
         <div id="med-list" className='med-list'>
             {
                 medsList.map(med => (
-                    <MedCard  key={ med.id } medicamento={ med } />
+                    <MedCard  
+                      key={ med.id } 
+                      medicamento={ med }
+                      onCloseCard={ onCloseCard }
+                    />
                 ))
             }
         </div>
