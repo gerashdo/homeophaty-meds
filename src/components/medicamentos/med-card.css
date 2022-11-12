@@ -1,6 +1,6 @@
 .med-card{
     /* border: 1px solid rgb(0, 0, 0); */
-    border-radius: 20px;
+    border-radius: 1.25rem;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -8,8 +8,8 @@
     gap: 1rem;
     justify-content: space-between;
     min-width: 60%;
-    padding: 2rem;
     transition: all 0.1s ease;
+    overflow: hidden;
 }
 
 .med-card:hover {
@@ -29,8 +29,28 @@
     font-size: var(--font-size-subtitle);
 }
 
+.med-card .title{
+    color: white;
+    padding: 1rem;
+}
+
+.med-card .title.formula {
+    background-color: var(--color-secondary-darker);
+}
+
+.med-card .title.normal {
+    background-color: var(--color-primary-darker);
+}
+
 .med-card-content p{
+    color: var(--color-black-lighter);
+    padding: 0 2rem;
     text-align: start;
+
+}
+
+.med-card .card-footer{
+    padding: 1rem;
 }
 
 button a {

@@ -7,20 +7,19 @@ export const MedCard = ({ medicamento }) => {
 
     return (
         <div className="med-card">
-
             <div className='med-card-content'>
-                <h4 className='title'>
+                <h4 className={`title ${ medicamento.ch ? 'normal': 'formula'}`}>
                     { medicamento.name } { medicamento.ch }
                 </h4>
                 <p>
                     { medDescriptionForCard( medicamento.description ) }
                 </p>
             </div>
-            <div>
+            <div className='card-footer'>
                 <Link to={ `/medicamentos/${ medicamento.id }` }>
-                <button className='primary'>
-                    Ver detalles
-                </button>
+                    <button className='primary'>
+                        Ver detalles
+                    </button>
                 </Link>
             </div>
         </div>
