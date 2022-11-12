@@ -150,6 +150,20 @@ button.negative:active{
   background-color: var(--color-negative-darker);
 }
 
+button.simple {
+  background-color: white;
+  border-radius: 30px;
+  color: var(--color-primary);
+}
+
+button.simple:hover{
+  color: var(--color-primary-lighter);
+}
+
+button.simple:active{
+  color: var(--color-primary-darker);
+}
+
 /* 
 body {
   margin: 0;
