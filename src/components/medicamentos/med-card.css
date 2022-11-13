@@ -43,11 +43,14 @@
     background-color: var(--color-primary-darker);
 }
 
+.med-card{
+    max-width: 20rem;
+}
+
 .med-card-content p{
     color: var(--color-black-lighter);
     padding: 0 2rem;
     text-align: start;
-
 }
 
 .med-card .card-footer{

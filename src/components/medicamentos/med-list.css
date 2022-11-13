@@ -6,3 +6,21 @@
     margin-top: 2rem;
     padding: 0 4rem;
 }
+
+@media (max-width: 1444px){
+    .med-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1182px){
+    .med-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 930px){
+    .med-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
