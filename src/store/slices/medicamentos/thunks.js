@@ -1,6 +1,6 @@
 import { fetchSinToken } from "../../../hooks/apiFetch"
 import { startAlert } from "../ui"
-import { addMedicamento, setMedicamentos, startLoadingMedicamentos, updateMedicamento } from "./medicamentoSlice"
+import { addMedicamento, deleteMedicamento, setMedicamentos, startLoadingMedicamentos, updateMedicamento } from "./medicamentoSlice"
 
 
 export const getMedicamentos = ( page = 0 ) => {
@@ -72,6 +72,39 @@ export const startUpdateMedicamento = ( medId, medData ) => {
             
         } catch (error) {
             console.log(error)
+        }
+    }
+}
+
+export const startDeleteMedicamento = ( medId ) => {
+    return async( dispatch, getState ) => {
+        try {
+            
+            const response = await fetchSinToken(
+                `medicine/${medId}`,
+                {},
+                'DELETE'
+            )
+            const data = await response.json()
+            
+            if( data.ok ){
+                dispatch( deleteMedicamento({ id: medId }) )
+                dispatch( startAlert({
+                    alertMessage: 'El medicamento ha sido eliminado',
+                    alertType: 'success'
+                }))
+            }else{
+                dispatch( startAlert({
+                    alertMessage: data.msg,
+                    alertType: 'error'
+                }))
+            }
+
+        } catch (error) {
+            dispatch( startAlert({
+                alertMessage: error,
+                alertType: 'error',
+            }))
         }
     }
 }

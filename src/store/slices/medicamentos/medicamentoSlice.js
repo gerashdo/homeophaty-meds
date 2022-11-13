@@ -25,8 +25,17 @@ export const medicamentoSlice = createSlice({
             state.medicamentos = state.medicamentos.map( med => (
                 med.id === action.payload.id ? action.payload : med
             ))
-        }
+        },
+        deleteMedicamento: ( state, action ) => {
+            state.medicamentos = state.medicamentos.filter( med => med.id !== action.payload.id )
+        },
     },
 })
 
-export const { startLoadingMedicamentos, setMedicamentos, addMedicamento, updateMedicamento } = medicamentoSlice.actions
+export const { 
+    startLoadingMedicamentos, 
+    setMedicamentos, 
+    addMedicamento, 
+    updateMedicamento, 
+    deleteMedicamento 
+} = medicamentoSlice.actions
