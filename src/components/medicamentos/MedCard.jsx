@@ -45,8 +45,8 @@ export const MedCard = ({ medicamento, onCloseCard }) => {
                 </div>
             </div>
             <DialogModal
-                title='Este es el titulo'
-                content='Estas seguro de eliminar este medicamento'
+                title='Confirmación de Eliminación'
+                content="¿Estas seguro de que quieres eliminar este medicamento?"
                 open={ open } 
                 onClose={ onCancelModal }
                 onAccept={ onAcceptModal }
