@@ -73,51 +73,60 @@ export const NewMedForm = () => {
                     />
                 </div>
 
-                <div className="input-group-h">
-                    <select 
-                        id="med_ch" 
-                        name="ch"
-                        className="process"
-                        value={ ch }
-                        onChange={ handleChange }
-                    >
-                        {
-                            chOptions.map( ch => (
-                                <option key={ch} value={ch}>{ ch }</option>
-                            ))
-                        }
-                    </select>
-                    <label 
-                        htmlFor="med_ch"
-                        className="group-label"
-                    >CH</label>
-                </div>
                 {
-                    innerMeds.length > 0 && (
-                        <div>
-                            <ul>
+                    type === medicineTypes.Medicamento
+                    ? (
+                        <div className="input-group-h">
+                            <select 
+                                id="med_ch" 
+                                name="ch"
+                                className="process"
+                                value={ ch }
+                                onChange={ handleChange }
+                            >
                                 {
-                                    innerMeds.map( med => (
-                                        <MedSmallCard 
-                                            key={ med.id } 
-                                            medicamento={ med }
-                                            onCloseInnerMed={ handleRemoveInnerMed }
-                                        />
+                                    chOptions.map( ch => (
+                                        <option key={ch} value={ch}>{ ch }</option>
                                     ))
                                 }
-                            </ul>
+                            </select>
+                            <label 
+                                htmlFor="med_ch"
+                                className="group-label"
+                            >CH</label>
                         </div>
                     )
-                }
+                    : (
+                        <>
+                            {
+                                innerMeds.length > 0 && (
+                                    <div>
+                                        <ul>
+                                            {
+                                                innerMeds.map( med => (
+                                                    <MedSmallCard 
+                                                    key={ med.id } 
+                                                    medicamento={ med }
+                                                    onCloseInnerMed={ handleRemoveInnerMed }
+                                                    />
+                                                    ))
+                                                }
+                                        </ul>
+                                    </div>
+                                )
+                            }
 
-                <div>
-                    <label htmlFor="inner_meds">Agregar medicamentos</label>
-                    <InnerMedsForm 
-                        id="inner_meds"
-                        onChangeInnerMeds={ changeInnerMeds }
-                        innerMeds={ innerMeds }
-                    />
-                </div>
+                            <div>
+                                <label htmlFor="inner_meds">Agregar medicamentos</label>
+                                <InnerMedsForm 
+                                    id="inner_meds"
+                                    onChangeInnerMeds={ changeInnerMeds }
+                                    innerMeds={ innerMeds }
+                                    />
+                            </div>
+                        </>
+                    )
+                }
 
                 <button 
                     type="submit"
