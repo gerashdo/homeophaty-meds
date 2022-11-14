@@ -1,15 +1,15 @@
+import { useDispatch, useSelector } from "react-redux"
+import { TemplateSystemPage } from "./TemplateSystemPage"
 import { MedList } from "../components/medicamentos/MedList"
 import { NewMedForm } from "../components/medicamentos/NewMedForm"
-import { TemplateSystemPage } from "./TemplateSystemPage"
-import { useForm } from "../hooks/useForm"
+import { changeSearchValue } from "../store/slices/medicamentos"
 
 import "./meds-page.css"
 
 
 export const MedsPage = () => {
-
-    const [ values, handleChange ] = useForm({ medName: ''})
-    const { medName } = values
+    const dispatch = useDispatch()
+    const { searchValue } = useSelector( state => state.medicamento )
 
     return (
         <>
@@ -23,12 +23,12 @@ export const MedsPage = () => {
                                 className="interface med-search"
                                 placeholder="Buscar"
                                 name="medName"
-                                onChange={ handleChange }
-                                value={ medName }
+                                onChange={ (e) => dispatch( changeSearchValue( e.target.value )) }
+                                value={ searchValue }
                             />
                         </div>
                         <MedList
-                            searchVariable={ medName }
+                            searchVariable={ searchValue }
                         />
                     </section>
                 </main>
