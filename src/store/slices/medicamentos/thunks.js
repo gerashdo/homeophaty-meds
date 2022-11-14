@@ -42,7 +42,10 @@ export const addNewMedicamento = ( medicamento ) => {
             }
             
         } catch (error) {
-            console.log(error)
+            dispatch( startAlert({
+                alertMessage: error,
+                alertType: 'error'
+            }) )
         }
     }
 }
@@ -71,7 +74,10 @@ export const startUpdateMedicamento = ( medId, medData ) => {
             }
             
         } catch (error) {
-            console.log(error)
+            dispatch( startAlert({
+                alertMessage: error,
+                alertType: 'error'
+            }) )
         }
     }
 }
