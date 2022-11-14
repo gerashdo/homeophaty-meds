@@ -1,20 +1,27 @@
+import { useEffect } from "react"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { formatMedData } from "../../helpers"
+import { formatMedData, medicineTypes } from "../../helpers"
 import { useForm } from "../../hooks/useForm"
 import { addNewMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
 import { MedSmallCard } from "./MedSmallCard"
+import { RadioOptions } from "./RadioOptions"
 
 
 const chOptions = ['-----','6', '30', '200', '1000']
 export const NewMedForm = () => {
-
     const dispatch = useDispatch()
 
     const [ innerMeds, changeInnerMeds ] = useState([])
-    const [ values, handleChange, ,reset ] = useForm({ name:'', ch:'' })
-    const { name, ch } = values
+    const [ values, handleChange, setValues, reset ] = useForm({ name:'', ch:'', type: medicineTypes.Medicamento })
+    const { name, ch, type } = values
+
+    const [ radioButtonValue, setRadioButtonValue ] = useState('')
+    useEffect(() => {
+      setRadioButtonValue( Object.keys( medicineTypes ).find( key => medicineTypes[ key ] === type ))
+    }, [type])
+    
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,7 +29,8 @@ export const NewMedForm = () => {
         const data = formatMedData({
             name,
             ch,
-            medicines: innerMeds.map( med => med.id )
+            medicines: innerMeds.map( med => med.id ),
+            type
         })
 
         dispatch( addNewMedicamento( data ) )
@@ -33,6 +41,10 @@ export const NewMedForm = () => {
 
     const handleRemoveInnerMed = ( id ) => {
         changeInnerMeds( innerMeds.filter( med => med.id !== id ) )
+    }
+
+    const handleRadioInputChange = ( e ) => {
+        setValues({ ...values, type: medicineTypes[ e.target.value ] })
     }
 
     return (
@@ -50,6 +62,14 @@ export const NewMedForm = () => {
                         className="process"
                         value={ name }
                         onChange={ handleChange }
+                    />
+                </div>
+                <div>
+                    <label htmlFor="med_type">Tipo</label>
+                    <RadioOptions 
+                        options={ Object.keys( medicineTypes )}
+                        value={ radioButtonValue }
+                        onChange={ handleRadioInputChange }
                     />
                 </div>
 
