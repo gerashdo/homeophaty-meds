@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks/useForm';
+import { startAlert } from '../../store/slices/ui';
 import { DinamicSelector } from '../iterface/DinamicSelector';
 
 import './inner-meds.css'
@@ -10,6 +11,7 @@ import './inner-meds.css'
 // onChangeInnerMeds: Accion a realizar cuando se agregue un nuevo medicamento
 // innerMeds: Lista de innerMeds actuales
 export const InnerMedsForm = ({ onChangeInnerMeds, innerMeds }) => {
+  const dispatch = useDispatch()
   const { medicamentos } = useSelector( state => state.medicamento )
   const [ values, handleChange, setValues, reset ] = useForm({ medicamento: '' })
   const { medicamento } = values
@@ -26,6 +28,17 @@ export const InnerMedsForm = ({ onChangeInnerMeds, innerMeds }) => {
   //TODO: Obtener el objeto del que se dio click y esta en el input
   const handleAddMedicine = (e) => {
     e.preventDefault()
+
+    // Validate that the new innerMed is not in the list already
+    // Cuando el medicamento se va a crear los innerMeds tienen id
+    // Cuando se va a actualizar un medicamento los innerMeds tienen _id
+    if( innerMeds.find( med => med.id === valueId || med._id === valueId ) ){
+      return dispatch( startAlert({
+        alertMessage: 'El medicamento ya se encuentra en la lista',
+        alertType: 'info'
+      }) )
+    }
+
     const result = medicamentos.find( med => med.id === valueId )
 
     if( result ){
