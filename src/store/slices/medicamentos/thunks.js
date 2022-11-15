@@ -35,10 +35,17 @@ export const addNewMedicamento = ( medicamento ) => {
                     alertType: 'success'
                 }))
             }else{
-                dispatch( startAlert({
-                    alertMessage: data.msg,
-                    alertType: 'error'
-                }) )
+                if( data.errors ){
+                    dispatch( startAlert({
+                        alertMessage: data.errors.type.msg,
+                        alertType: 'error'
+                    }))
+                }else{
+                    dispatch( startAlert({
+                        alertMessage: data.msg,
+                        alertType: 'error'
+                    }))
+                }
             }
             
         } catch (error) {
@@ -78,7 +85,6 @@ export const startUpdateMedicamento = ( medId, medData ) => {
                         alertType: 'error'
                     }))
                 }
-                console.log( data)
             }
             
         } catch (error) {
