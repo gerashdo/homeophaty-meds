@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { formatMedData, medicineTypes } from "../../helpers"
+import { chOptions, formatMedData, medicineTypes } from "../../helpers"
 import { useForm } from "../../hooks/useForm"
 import { addNewMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
@@ -10,7 +10,7 @@ import { RadioOptions } from "./RadioOptions"
 
 import './new-med-form.css'
 
-const chOptions = ['-----','6', '30', '200', '1000']
+
 export const NewMedForm = () => {
     const dispatch = useDispatch()
 
@@ -48,6 +48,10 @@ export const NewMedForm = () => {
         setValues({ ...values, type: medicineTypes[ e.target.value ] })
     }
 
+    const handleChRadioInputChange = (e) => {
+        setValues({ ...values, ch: e.target.value })
+    }
+
     return (
         <>
             <h5>Crear medicamento</h5>
@@ -77,24 +81,13 @@ export const NewMedForm = () => {
                 {
                     type === medicineTypes.Medicamento
                     ? (
-                        <div className="input-group-h">
-                            <select 
-                                id="med_ch" 
-                                name="ch"
-                                className="process"
+                        <div className="group-form">
+                            <label htmlFor="med_type">CH</label>
+                            <RadioOptions 
+                                options={ chOptions }
                                 value={ ch }
-                                onChange={ handleChange }
-                            >
-                                {
-                                    chOptions.map( ch => (
-                                        <option key={ch} value={ch}>{ ch }</option>
-                                    ))
-                                }
-                            </select>
-                            <label 
-                                htmlFor="med_ch"
-                                className="group-label"
-                            >CH</label>
+                                onChange={ handleChRadioInputChange }
+                            />
                         </div>
                     )
                     : (

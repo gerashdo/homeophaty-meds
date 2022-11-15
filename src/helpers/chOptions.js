@@ -1,0 +1,1 @@
+export const chOptions = ['6', '30', '200', '1000']
