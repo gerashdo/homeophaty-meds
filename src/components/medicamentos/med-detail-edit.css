@@ -6,10 +6,19 @@ div.med-data{
     justify-content: center;
 }
 
-.med-titlename h3 {
-    font-size: var(--font-size-title);
+.med-titlename input{
+    background-color: var(--color-gray-background);
+    border: 0;
+    border-radius: 1rem;
+    font-size: var(--font-size-subtitle);
     font-weight: var(--font-bold);
     margin: 1rem 0;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.med-titlename input:focus{
+    outline: none;
 }
 
 div.med-data h4{

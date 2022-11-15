@@ -3,14 +3,19 @@ import { MedSmallCard } from "./MedSmallCard"
 import { useForm } from "../../hooks/useForm"
 import { startUpdateMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
-import { medicineTypes } from "../../helpers"
+import { chOptions, medicineTypes } from "../../helpers"
 
 import './med-detail-edit.css'
+import { RadioOptions } from "../iterface/RadioOptions"
 
-export const MedDetailEdit = ({ medicamento }) => {
+export const MedDetailEdit = ({ medicamento, onCancel }) => {
     const dispatch = useDispatch()
-    const [ values, handleChange ] = useForm({ descripcion: medicamento.description })
-    const { descripcion } = values
+    const [ values, handleChange, setValues ] = useForm({
+        name: medicamento.name,
+        description: medicamento.description,
+        ch: medicamento.ch
+     })
+    const { description, name, ch } = values
 
     // TODO: Agregar dispatch para guardar la descripcion del medicamento
     const handleSubmit = (e) => {
@@ -18,8 +23,11 @@ export const MedDetailEdit = ({ medicamento }) => {
         // TODO: Utilizar un estas seguro por si viene vacio
         dispatch( startUpdateMedicamento( medicamento.id, { 
             ...medicamento,
-            description: descripcion
+            description,
+            ch,
+            name
         }))
+        onCancel()
     }
 
     const handleRemoveMed = ( id ) => {
@@ -38,12 +46,34 @@ export const MedDetailEdit = ({ medicamento }) => {
         }
         dispatch( startUpdateMedicamento( medicamento.id, medUpdated ) )
     }
+
+    const handleChChange = ( e ) => {
+        setValues({ ...values, ch: e.target.value })
+    }
     
     return (
         <>
             <div className="med-titlename">
-                <h3>{ medicamento.name } { medicamento.ch }</h3>
+                <input
+                    name="name"
+                    type="text"
+                    value={ name }
+                    onChange={ handleChange }
+                />
             </div>
+            {
+                medicamento.type === medicineTypes.Medicamento
+                ? (
+                    <div className="med-ch">
+                        <RadioOptions 
+                            options={ chOptions }
+                            value={ ch }
+                            onChange={ handleChChange }
+                        />
+                    </div>
+                )
+                : null
+            }
             <div className="med-data">
                 {/* TODO: No mostrar el formulario si tiene un ch el medicamento  */}
                 {
@@ -65,6 +95,7 @@ export const MedDetailEdit = ({ medicamento }) => {
                                             key={ med._id || med.id } 
                                             medicamento={ med }
                                             onCloseInnerMed={ handleRemoveMed }
+                                            isDelete={ true }
                                         />))
                                     }
                                 </>
@@ -77,12 +108,17 @@ export const MedDetailEdit = ({ medicamento }) => {
                 >
                     <h4>Prescripcion</h4>
                     <textarea 
-                        name="descripcion"
-                        value={ descripcion }
+                        name="description"
+                        value={ description }
                         onChange={ handleChange }
-                        rows='10'
+                        rows='20'
                     />
                     <div className="submit-button-container">
+                        <button 
+                            type="submit"
+                            className="simple"
+                            onClick={ onCancel }
+                        >Cancelar</button>
                         <button 
                             type="submit"
                             className="primary"

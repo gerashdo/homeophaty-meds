@@ -31,28 +31,25 @@ export const MedPage = () => {
                 <section className="section med-detail-container">
                     {   
                         medicamento
-                        ? <>
-                            <div className="align-content-end">
-                                <button 
-                                    className="simple"
-                                    onClick={ () => setEdit( !edit )}
-                                >
-                                    Editar medicamento
-                                </button>
-                            </div>
-                            {
-                                edit
-                                ? <>
-                                    <MedDetailEdit
-                                        medicamento={ medicamento }
-                                    />
-                                </>
-                                :<MedDetail 
+                        ? 
+                            edit
+                            ? (<MedDetailEdit
+                                    medicamento={ medicamento }
+                                    onCancel={ () => setEdit( false )}
+                            />)
+                            :(<>
+                                <div className="align-content-end">
+                                    <button 
+                                        className="simple"
+                                        onClick={ () => setEdit( true )}
+                                    >
+                                        Editar medicamento
+                                    </button>
+                                </div>
+                                <MedDetail 
                                     medicamento={ medicamento }
                                 />
-                            }
-                            
-                        </> 
+                            </>)
                         : (<div>
                             Loading
                         </div>)
