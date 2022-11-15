@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { medDescriptionForCard } from '../../helpers'
+import { medDescriptionForCard, medicineTypes } from '../../helpers'
 import { DialogModal } from '../iterface/DialogModal'
 
 import './med-card.css'
@@ -29,7 +29,7 @@ export const MedCard = ({ medicamento, onCloseCard }) => {
                     onClick={ handleCloseCard }
                     >x</button>
                 <div className='med-card-content'>
-                    <h4 className={`title ${ medicamento.ch ? 'normal': 'formula'}`}>
+                    <h4 className={`title ${ medicamento.type === medicineTypes.Medicamento ? 'medicamento': 'formula'}`}>
                         { medicamento.name } { medicamento.ch }
                     </h4>
                     <p>

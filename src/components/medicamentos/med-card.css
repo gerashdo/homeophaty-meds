@@ -39,7 +39,7 @@
     background-color: var(--color-secondary-darker);
 }
 
-.med-card .title.normal {
+.med-card .title.medicamento {
     background-color: var(--color-primary-darker);
 }
 

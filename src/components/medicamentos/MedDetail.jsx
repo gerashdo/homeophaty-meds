@@ -5,6 +5,7 @@ import { startUpdateMedicamento } from "../../store/slices/medicamentos"
 
 import './med-detail.css'
 import { InnerMedsForm } from "./InnerMedsForm"
+import { medicineTypes } from "../../helpers"
 
 export const MedDetail = ({ medicamento }) => {
     const dispatch = useDispatch()
@@ -46,7 +47,7 @@ export const MedDetail = ({ medicamento }) => {
             <div className="med-data">
                 {/* TODO: No mostrar el formulario si tiene un ch el medicamento  */}
                 {
-                    medicamento.ch
+                    medicamento.type === medicineTypes.Medicamento
                     ? null 
                     :(<div className="inner-med-list">
                         <h4>Medicamentos</h4>
