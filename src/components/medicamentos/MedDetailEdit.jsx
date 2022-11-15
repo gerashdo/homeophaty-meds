@@ -113,7 +113,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
                         onChange={ handleChange }
                         rows='20'
                     />
-                    <div className="submit-button-container">
+                    <div className="align-content-end submit-button-container">
                         <button 
                             type="submit"
                             className="simple"
