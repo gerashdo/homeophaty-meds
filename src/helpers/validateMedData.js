@@ -23,11 +23,11 @@ export const formatMedData = ( medicamento ) => {
     return medicamento
 }
 
-export const medExists = ( medicines, medicine ) => {
+export const medExists = ( medicines, medId,  medicine ) => {
     return medicines.find( med => 
         deleteStringWhiteSpaces([ med.name, med.ch ])
             .toLocaleLowerCase() === deleteStringWhiteSpaces([ medicine.name, medicine.ch ])
-                .toLocaleLowerCase())
+                .toLocaleLowerCase() && med.id !== medId ) 
 }
 
 
