@@ -67,10 +67,18 @@ export const startUpdateMedicamento = ( medId, medData ) => {
                     alertType: 'success'
                 }))
             }else{
-                dispatch( startAlert({
-                    alertMessage: data.msg,
-                    alertType: 'error'
-                }))
+                if( data.errors ){
+                    dispatch( startAlert({
+                        alertMessage: data.errors.type.msg,
+                        alertType: 'error'
+                    }))
+                }else{
+                    dispatch( startAlert({
+                        alertMessage: data.msg,
+                        alertType: 'error'
+                    }))
+                }
+                console.log( data)
             }
             
         } catch (error) {
