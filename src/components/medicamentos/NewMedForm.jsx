@@ -8,6 +8,7 @@ import { InnerMedsForm } from "./InnerMedsForm"
 import { MedSmallCard } from "./MedSmallCard"
 import { RadioOptions } from "./RadioOptions"
 
+import './new-med-form.css'
 
 const chOptions = ['-----','6', '30', '200', '1000']
 export const NewMedForm = () => {
@@ -54,7 +55,7 @@ export const NewMedForm = () => {
                 className="form"
                 onSubmit={ handleSubmit }
             >
-                <div>
+                <div className="group-form">
                     <label htmlFor="med_name">Nombre</label>
                     <input 
                         id="med_name" 
@@ -64,7 +65,7 @@ export const NewMedForm = () => {
                         onChange={ handleChange }
                     />
                 </div>
-                <div>
+                <div className="group-form">
                     <label htmlFor="med_type">Tipo</label>
                     <RadioOptions 
                         options={ Object.keys( medicineTypes )}

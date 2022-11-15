@@ -113,6 +113,10 @@ input.interface {
   gap: 1rem;
 }
 
+.input-group-h {
+  margin: 1rem 0;
+}
+
 
 
 /* Utilities */
