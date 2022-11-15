@@ -185,6 +185,11 @@ button.simple:active{
   color: var(--color-primary-darker);
 }
 
+.align-content-end{
+  display: flex;
+  justify-content: flex-end;
+}
+
 /* 
 body {
   margin: 0;

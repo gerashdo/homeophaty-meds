@@ -8,6 +8,7 @@ import { getMedById } from "../helpers"
 import { NewMedForm } from "../components/medicamentos/NewMedForm"
 
 import './med-page.css'
+import { MedDetailEdit } from "../components/medicamentos/MedDetailEdit"
 
 
 export const MedPage = () => {
@@ -31,9 +32,26 @@ export const MedPage = () => {
                     {   
                         medicamento
                         ? <>
-                            <MedDetail 
-                                medicamento={ medicamento }
-                            />
+                            <div className="align-content-end">
+                                <button 
+                                    className="simple"
+                                    onClick={ () => setEdit( !edit )}
+                                >
+                                    Editar medicamento
+                                </button>
+                            </div>
+                            {
+                                edit
+                                ? <>
+                                    <MedDetailEdit
+                                        medicamento={ medicamento }
+                                    />
+                                </>
+                                :<MedDetail 
+                                    medicamento={ medicamento }
+                                />
+                            }
+                            
                         </> 
                         : (<div>
                             Loading
