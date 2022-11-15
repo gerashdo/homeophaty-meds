@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import { CgPill } from "react-icons/cg";
 
 import "./navbar.css"
 
@@ -13,7 +14,10 @@ export const Navbar = () => {
                   to="/medicamentos"
                 >
                   <li>
-                    Medicamentos
+                    <CgPill />
+                    <span>
+                      Medicamentos
+                    </span> 
                   </li>
                 </NavLink>
             </ul>

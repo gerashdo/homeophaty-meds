@@ -1,14 +1,12 @@
 
 .main-navbar{
     background-color: var(--color-secondary);
-    padding: 1rem;
+    padding: 5rem 0.5rem;
 }
 
 .main-navbar nav {
-    /* align-items: center; */
     display: flex;
     flex-direction: column;
-    /* justify-content:flex-start ; */
     min-height: 100%;
 }
 
@@ -17,21 +15,30 @@
 }
 
 .main-navbar ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
+    transition: all 0.2s ease;
 }
 
 .main-navbar ul a {
-    font-weight: 500;
+    font-weight: var(--font-medium);
     color: white;
     text-decoration: none;
 }
+
+.main-navbar a.active li{
+    font-weight: var(--font-bold);
+    background-color: var(--color-secondary-darker);
+}
   
-.main-navbar ul li:hover {
+.main-navbar ul li:hover, .main-navbar a.active li:hover {
     background-color: var(--color-secondary-lighter);
 }
 
-.main-navbar ul li:active {
+.main-navbar ul li:active, .main-navbar a.active li:active {
     background-color: var(--color-secondary-darker);
 }
 
