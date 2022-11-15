@@ -19,7 +19,7 @@ div.med-data h4{
 }
 
 div.med-data div.inner-med-list {
-    min-width: 30%;
+    min-width: 20%;
 }
 
 div.med-data ul {
@@ -31,13 +31,21 @@ div.med-data form {
     width: 80%;
 }
 
-div.med-data form textarea {
+div.med-data .med-description{
+    width: 100%;
+}
+
+div.med-data textarea {
     width: 100%;
     border: none;
     border-radius: 0.5rem;
     background-color: var( --color-gray-background);
     resize: none;
     padding: 1rem;
+}
+
+div.med-data textarea:focus{
+    outline: none;
 }
 
 .submit-button-container{
@@ -62,9 +70,5 @@ div.med-data form textarea {
         font-size: var(--font-size-subtitle);
         font-weight: var(--font-bold);
         margin: 1rem 0;
-    }
-
-    div.med-data form {
-        width: 100%;
     }
 }

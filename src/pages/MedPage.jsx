@@ -15,6 +15,7 @@ export const MedPage = () => {
     const { medicamentos } = useSelector( state => state.medicamento  )
 
     const [ medicamento, setMedicamento ] = useState(null)
+    const [ edit, setEdit ] = useState( false )
 
     useEffect(() => {
       if( medicamentos ){
@@ -29,9 +30,11 @@ export const MedPage = () => {
                 <section className="section med-detail-container">
                     {   
                         medicamento
-                        ? <MedDetail 
+                        ? <>
+                            <MedDetail 
                                 medicamento={ medicamento }
                             />
+                        </> 
                         : (<div>
                             Loading
                         </div>)

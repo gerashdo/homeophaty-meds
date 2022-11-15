@@ -99,9 +99,10 @@ export const NewMedForm = () => {
                                             {
                                                 innerMeds.map( med => (
                                                     <MedSmallCard 
-                                                    key={ med.id } 
-                                                    medicamento={ med }
-                                                    onCloseInnerMed={ handleRemoveInnerMed }
+                                                        key={ med.id } 
+                                                        medicamento={ med }
+                                                        onCloseInnerMed={ handleRemoveInnerMed }
+                                                        isDelete={ true }
                                                     />
                                                     ))
                                                 }
