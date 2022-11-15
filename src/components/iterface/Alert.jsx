@@ -7,7 +7,7 @@ import './alert.css'
 
 export const Alert = ({ children }) => {
     const dispatch = useDispatch()
-    const { alertActive, alertMessage, alertType } = useSelector( state => state.ui )
+    const { alertActive, alertMessage, alertType, alertDuration } = useSelector( state => state.ui )
 
     const closeAlert = () => {
         dispatch( stopAlert() )
@@ -17,7 +17,7 @@ export const Alert = ({ children }) => {
         if( alertActive ){
             setTimeout( () => {
                closeAlert()
-            }, 8000)
+            }, alertDuration * 1000 )
         }
     }, [ alertActive ])
 

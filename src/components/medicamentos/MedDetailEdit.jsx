@@ -33,7 +33,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
         if( medExists( medicamentos, medicamento.id , medData ) ){
             return dispatch( startAlert({
                 alertMessage: 'El medicamento ya existe',
-                alertType: 'error'
+                alertType: 'error',
             }))
         }
 

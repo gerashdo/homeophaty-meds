@@ -4,6 +4,7 @@ const initialState = {
     alertActive: false,
     alertMessage: '',
     alertType: null,
+    alertDuration: 8,
 }
 
 export const uiSlice = createSlice({
@@ -14,6 +15,7 @@ export const uiSlice = createSlice({
             state.alertActive = true
             state.alertMessage = action.payload.alertMessage
             state.alertType = action.payload.alertType
+            state.alertDuration = action.payload.alertDuration || state.alertDuration
         },
         stopAlert: ( state ) => {
             state.alertActive = false
