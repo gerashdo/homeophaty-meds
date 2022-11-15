@@ -17,6 +17,8 @@
 
   --font-bold: 700;
   --font-normal: 400;
+  --font-size-little: 12px;
+  --font-size-media: 14px;
   --font-size-normal: 16px;
   --font-size-subtitle: 1.25rem;
   --font-size-title: 2rem;
@@ -29,6 +31,20 @@
 
   color: var(--color-black);
   background-color: var(--color-gray-background);
+}
+
+@media (max-width: 1444px){
+  :root {
+    font-size: var(--font-size-media);
+    line-height: 20px;
+  }
+}
+
+@media (max-width: 930px){
+  :root {
+    font-size: var(--font-size-little);
+    line-height: 18px;
+  }
 }
 
 *,

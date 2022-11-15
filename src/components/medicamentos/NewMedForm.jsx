@@ -6,7 +6,7 @@ import { useForm } from "../../hooks/useForm"
 import { addNewMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
 import { MedSmallCard } from "./MedSmallCard"
-import { RadioOptions } from "./RadioOptions"
+import { RadioOptions } from "../iterface/RadioOptions"
 
 import './new-med-form.css'
 

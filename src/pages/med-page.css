@@ -5,3 +5,9 @@ main section.med-detail-container{
     min-width: 50%;
     padding: 2rem 4rem;
 }
+
+@media (max-width: 700px){
+    main section.med-detail-container{
+        padding: 1rem 2rem;
+    }
+}

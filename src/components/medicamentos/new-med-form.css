@@ -2,3 +2,7 @@
 div.group-form {
     margin-top: 0;
 }
+
+h5 {
+    font-weight: var(--font-bold);
+}

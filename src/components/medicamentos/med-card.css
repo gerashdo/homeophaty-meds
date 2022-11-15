@@ -51,6 +51,7 @@
     color: var(--color-black-lighter);
     padding: 0 2rem;
     text-align: start;
+    overflow: hidden;
 }
 
 .med-card .card-footer{

@@ -1,7 +1,7 @@
 
 div.radio-options{
     display: flex;
-    gap: 2rem;
+    flex-flow: row wrap;
     margin: 1rem 0;
 }
 
@@ -15,4 +15,5 @@ div.radio-options .radio-input-container{
     display: flex;
     align-items: center;
     gap: 0.25rem;
+    margin: 0 0.5rem;
 }
