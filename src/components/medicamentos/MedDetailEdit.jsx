@@ -1,15 +1,17 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { MedSmallCard } from "./MedSmallCard"
 import { useForm } from "../../hooks/useForm"
 import { startUpdateMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
-import { chOptions, medicineTypes } from "../../helpers"
+import { chOptions, medExists, medicineTypes } from "../../helpers"
+import { RadioOptions } from "../iterface/RadioOptions"
 
 import './med-detail-edit.css'
-import { RadioOptions } from "../iterface/RadioOptions"
+import { startAlert } from "../../store/slices/ui"
 
 export const MedDetailEdit = ({ medicamento, onCancel }) => {
     const dispatch = useDispatch()
+    const { medicamentos } = useSelector( state => state.medicamento )
     const [ values, handleChange, setValues ] = useForm({
         name: medicamento.name,
         description: medicamento.description,
@@ -20,13 +22,23 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
     // TODO: Agregar dispatch para guardar la descripcion del medicamento
     const handleSubmit = (e) => {
         e.preventDefault()
-        // TODO: Utilizar un estas seguro por si viene vacio
-        dispatch( startUpdateMedicamento( medicamento.id, { 
+
+        const medData = { 
             ...medicamento,
             description,
             ch,
             name
-        }))
+        }
+
+        if( medExists( medicamentos, medData ) ){
+            return dispatch( startAlert({
+                alertMessage: 'El medicamento ya existe',
+                alertType: 'error'
+            }))
+        }
+
+        // TODO: Utilizar un estas seguro por si viene vacio
+        dispatch( startUpdateMedicamento( medicamento.id, medData ))
         onCancel()
     }
 

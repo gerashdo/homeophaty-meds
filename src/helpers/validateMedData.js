@@ -1,4 +1,6 @@
+
 import { medicineTypes } from "./medicineTypes";
+import { deleteStringWhiteSpaces } from "./searchMeds";
 
 function isNumeric( value ) {
     return /^\d+$/.test( value );
@@ -19,6 +21,13 @@ export const formatMedData = ( medicamento ) => {
     // }
 
     return medicamento
+}
+
+export const medExists = ( medicines, medicine ) => {
+    return medicines.find( med => 
+        deleteStringWhiteSpaces([ med.name, med.ch ])
+            .toLocaleLowerCase() === deleteStringWhiteSpaces([ medicine.name, medicine.ch ])
+                .toLocaleLowerCase())
 }
 
 

@@ -1,7 +1,7 @@
 
 // Eliminar los espacios de un [] de strings para crear una sola
 // con todos los valores del arreglo
-const deleteStringWhiteSpaces = ( strings ) => {
+export const deleteStringWhiteSpaces = ( strings ) => {
     let completeString = ""
     
     strings.map( str => {
