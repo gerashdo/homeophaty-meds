@@ -8,7 +8,6 @@ export const fetchSinToken = ( endpoint, data, method='GET' ) => {
     if( method === 'GET' ){
         return fetch(url)
     }else{
-        console.log( JSON.stringify( data ) )
         return fetch( url, {
             method,
             headers: {
