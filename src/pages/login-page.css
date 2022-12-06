@@ -1,0 +1,19 @@
+
+
+.login-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    height: 100vh;
+}
+
+div.input-group{
+    display: flex;
+    flex-direction: column;
+}
+
+main .section{
+    width: 20%;
+    padding: 1rem 2rem;
+}
