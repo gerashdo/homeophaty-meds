@@ -13,7 +13,7 @@ div.input-group{
     flex-direction: column;
 }
 
-main .section{
+main .section.login {
     width: 20%;
     padding: 1rem 2rem;
 }

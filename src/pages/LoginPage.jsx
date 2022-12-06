@@ -21,7 +21,7 @@ export const LoginPage = () => {
       className="login-container"
     >
       <div
-        className='section'
+        className='section login'
       >
 
       <form
