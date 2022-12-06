@@ -25,6 +25,8 @@ export const startLoginUser = ( data ) => {
                 }
             }else{
                 dispatch( loginUser( dataResponse ))
+                localStorage.setItem( "token", dataResponse.token )
+                localStorage.setItem( "user", JSON.stringify( dataResponse.user ))
             }
             
         } catch (error) {
