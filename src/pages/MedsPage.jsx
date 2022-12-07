@@ -1,8 +1,9 @@
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { TemplateSystemPage } from "./TemplateSystemPage"
 import { MedList } from "../components/medicamentos/MedList"
 import { NewMedForm } from "../components/medicamentos/NewMedForm"
-import { changeSearchValue } from "../store/slices/medicamentos"
+import { changeSearchValue, getMedicamentos } from "../store/slices/medicamentos"
 
 import "./meds-page.css"
 
@@ -10,6 +11,10 @@ import "./meds-page.css"
 export const MedsPage = () => {
     const dispatch = useDispatch()
     const { searchValue } = useSelector( state => state.medicamento )
+
+    useEffect(() => {
+        dispatch( getMedicamentos() )
+    }, [])
 
     return (
         <>
