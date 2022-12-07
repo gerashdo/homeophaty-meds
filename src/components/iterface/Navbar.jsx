@@ -22,6 +22,7 @@ export const Navbar = () => {
             <ul>
                 <NavLink
                   to="/"
+                  end
                 >
                   <li>
                     {/* <CgPill /> */}
