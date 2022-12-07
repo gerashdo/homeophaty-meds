@@ -1,3 +1,4 @@
+import { createContentErrorAlert } from "../../../helpers"
 import { fetchSinToken } from "../../../hooks/apiFetch"
 import { startAlert } from "../ui"
 import { addMedicamento, deleteMedicamento, setMedicamentos, startLoadingMedicamentos, updateMedicamento } from "./medicamentoSlice"
@@ -11,7 +12,9 @@ export const getMedicamentos = ( page = 0 ) => {
         const response = await fetchSinToken('medicine')
         const data = await response.json()
 
-        if( data.ok ){
+        if( response.status !== 200 ){
+            dispatch( startAlert( createContentErrorAlert( data ) ) )
+        }else{
             dispatch( setMedicamentos({
                 page: page + 1,
                 medicamentos: data.medicines
@@ -26,7 +29,7 @@ export const addNewMedicamento = ( medicamento ) => {
             const response = await fetchSinToken('medicine', medicamento, 'POST')
             const data = await response.json()
     
-            if( data.ok ){
+            if( response.status === 201 ){
                 dispatch( addMedicamento({ 
                     medicamento: data.medicine 
                 }))
@@ -35,17 +38,7 @@ export const addNewMedicamento = ( medicamento ) => {
                     alertType: 'success'
                 }))
             }else{
-                if( data.errors ){
-                    dispatch( startAlert({
-                        alertMessage: data.errors.type.msg,
-                        alertType: 'error'
-                    }))
-                }else{
-                    dispatch( startAlert({
-                        alertMessage: data.msg,
-                        alertType: 'error'
-                    }))
-                }
+                dispatch( startAlert( createContentErrorAlert( data ) ) )
             }
             
         } catch (error) {
@@ -67,24 +60,14 @@ export const startUpdateMedicamento = ( medId, medData ) => {
             )
             const data = await response.json()
 
-            if( data.ok ){
+            if( response.status === 200 ){
                 dispatch( updateMedicamento( data.medicine ) )
                 dispatch( startAlert({
                     alertMessage: 'El medicamento se ha modificado exitosamente',
                     alertType: 'success'
                 }))
             }else{
-                if( data.errors ){
-                    dispatch( startAlert({
-                        alertMessage: data.errors.type.msg,
-                        alertType: 'error'
-                    }))
-                }else{
-                    dispatch( startAlert({
-                        alertMessage: data.msg,
-                        alertType: 'error'
-                    }))
-                }
+                dispatch( startAlert( createContentErrorAlert( data ) ) )
             }
             
         } catch (error) {
@@ -107,17 +90,14 @@ export const startDeleteMedicamento = ( medId ) => {
             )
             const data = await response.json()
             
-            if( data.ok ){
+            if( response.status === 202 ){
                 dispatch( deleteMedicamento({ id: medId }) )
                 dispatch( startAlert({
                     alertMessage: 'El medicamento ha sido eliminado',
                     alertType: 'success'
                 }))
             }else{
-                dispatch( startAlert({
-                    alertMessage: data.msg,
-                    alertType: 'error'
-                }))
+                dispatch( startAlert( createContentErrorAlert( data ) ) )
             }
 
         } catch (error) {
