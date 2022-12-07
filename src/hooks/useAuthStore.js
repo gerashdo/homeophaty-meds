@@ -48,7 +48,7 @@ export const useAuthStore = () => {
                 dispatch( startAlert( createContentErrorAlert( data ) ) )
             }else{
                 dispatch( renovateToken( data.token ) )
-                saveUserAndToken( data.token )
+                saveUserAndToken( data.token, data.user )
             }
             
         } catch (error) {
