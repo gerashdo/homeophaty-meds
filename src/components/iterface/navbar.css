@@ -11,6 +11,9 @@
 }
 
 .main-navbar ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     min-width: 100%;
 }
 
@@ -44,4 +47,19 @@
 
 .main-navbar ul li {
     list-style: none;
+}
+
+.logout-container{
+    margin: 3rem 0 1rem 0;
+}
+
+button.logout{
+    width: 100%;
+    border-radius: 0;
+    background-color: inherit;
+    font-weight: var(--font-medium);
+}
+
+button.logout:hover {
+    background-color: var(--color-secondary-darker);
 }
