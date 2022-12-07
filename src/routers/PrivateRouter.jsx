@@ -1,9 +1,10 @@
-import { useSelector } from "react-redux"
+
 import { Navigate } from "react-router-dom"
+import { useAuthStore } from "../hooks"
 
 export const PrivateRouter = ({ children }) => {
 
-    const { usertAuth } = useSelector( state => state.auth )
+    const { usertAuth } = useAuthStore()
 
     return usertAuth
         ? children

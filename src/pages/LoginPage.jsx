@@ -1,19 +1,15 @@
-
-
-import { useDispatch } from 'react-redux'
+import { useAuthStore } from '../hooks'
 import { useForm } from '../hooks/useForm'
-import { startLoginUser } from '../store/slices/auth'
 import './login-page.css'
 
 export const LoginPage = () => {
-  const dispatch = useDispatch()
+  const { startLoginUser } = useAuthStore()
   const [ values, handleChange, ] = useForm({ username: '', password: ''})
   const { username, password } = values
 
   const handleSubmit = async( e ) => {
     e.preventDefault()
-    
-    dispatch( startLoginUser( values ) )
+    startLoginUser( values )
   }
 
   return (

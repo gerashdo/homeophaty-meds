@@ -1,13 +1,12 @@
 
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { Navbar } from '../components/iterface/Navbar'
-import { startRenovateToken } from '../store/slices/auth'
+import { useAuthStore } from '../hooks'
 
 export const TemplateSystemPage = ({ children }) => {
-  const dispatch = useDispatch()
+  const { startRenovateToken } = useAuthStore()
   useEffect(() => {
-    dispatch( startRenovateToken() )
+    startRenovateToken()
   }, [])
   
 

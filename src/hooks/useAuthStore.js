@@ -1,12 +1,16 @@
-import { createContentErrorAlert, deleteUserAndToken, saveUserAndToken } from "../../../helpers"
-import { fetchAPI } from "../../../hooks/apiFetch"
-import { startAlert } from "../ui"
-import { loginUser, logoutUser, renovateToken } from "./authSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { createContentErrorAlert, deleteUserAndToken, saveUserAndToken } from "../helpers"
+import { loginUser, logoutUser, renovateToken } from "../store/slices/auth"
+import { startAlert } from "../store/slices/ui"
+import { fetchAPI } from "./apiFetch"
 
 
+export const useAuthStore = () => {
 
-export const startLoginUser = ( data ) => {
-    return async( dispatch, getState ) => {
+    const { usertAuth, authToken } = useSelector( state => state.auth )
+    const dispatch = useDispatch()
+
+    const startLoginUser = async( data ) => {
         const url = 'auth/login'
         try {
             const response = await fetchAPI( url, data, 'POST')
@@ -26,24 +30,16 @@ export const startLoginUser = ( data ) => {
             }) )
         }
     }
-}
 
-export const startRenovateToken = () => {
-    return async( dispatch, getState ) => {
-
+    const startRenovateToken = async() => {
         try {
-            const { auth } = getState()
-            const { authToken } = auth
-
-            console.log( authToken )
-    
             const response = await fetchAPI( 
                 'auth/renovate',
                 {},
                 'GET',
                 authToken
             )
-            console.log( response )
+
             const data = await response.json()
     
             if( response.status !== 200 ){
@@ -61,6 +57,12 @@ export const startRenovateToken = () => {
                 alertType: 'error'
             }) )
         }
+    }
 
+    return {
+        usertAuth,
+        authToken,
+        startLoginUser,
+        startRenovateToken,
     }
 }
