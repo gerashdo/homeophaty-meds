@@ -1,3 +1,4 @@
+import { createContentErrorAlert } from "../../../helpers"
 import { fetchSinToken } from "../../../hooks/apiFetch"
 import { startAlert } from "../ui"
 import { loginUser } from "./authSlice"
@@ -12,17 +13,7 @@ export const startLoginUser = ( data ) => {
             const dataResponse = await response.json()
 
             if( response.status !== 200 ){
-                if( dataResponse.msg ){
-                    dispatch( startAlert({
-                        alertMessage: dataResponse.msg,
-                        alertType: 'error'
-                    }))
-                }else{
-                    dispatch( startAlert({
-                        alertMessage: Object.values( dataResponse.errors )[0].msg,
-                        alertType: 'error'
-                    }))
-                }
+                dispatch( startAlert( createContentErrorAlert( dataResponse )))
             }else{
                 dispatch( loginUser( dataResponse ))
                 localStorage.setItem( "token", dataResponse.token )
