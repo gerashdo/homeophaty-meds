@@ -4,6 +4,7 @@ import { CgPill } from "react-icons/cg";
 import "./navbar.css"
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../store/slices/auth";
+import { deleteUserAndToken } from "../../helpers";
 
 export const Navbar = () => {
 
@@ -11,8 +12,7 @@ export const Navbar = () => {
 
   const handleLogout = () => {
       dispatch( logoutUser() )
-      localStorage.removeItem('token')
-      localStorage.removeItem('user')
+      deleteUserAndToken()
   }
 
   return (

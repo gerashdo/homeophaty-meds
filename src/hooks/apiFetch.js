@@ -14,7 +14,9 @@ export const fetchAPI = ( endpoint, data, method='GET', token = null ) => {
     }
 
     if( method === 'GET' ){
-        return fetch(url)
+        return fetch(url, {
+            headers
+        })
     }else{
         return fetch( url, {
             method,
