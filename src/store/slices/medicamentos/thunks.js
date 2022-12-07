@@ -1,5 +1,5 @@
 import { createContentErrorAlert } from "../../../helpers"
-import { fetchSinToken } from "../../../hooks/apiFetch"
+import { fetchAPI } from "../../../hooks/apiFetch"
 import { startAlert } from "../ui"
 import { addMedicamento, deleteMedicamento, setMedicamentos, startLoadingMedicamentos, updateMedicamento } from "./medicamentoSlice"
 
@@ -9,7 +9,7 @@ export const getMedicamentos = ( page = 0 ) => {
 
         dispatch( startLoadingMedicamentos() )
 
-        const response = await fetchSinToken('medicine')
+        const response = await fetchAPI('medicine')
         const data = await response.json()
 
         if( response.status !== 200 ){
@@ -26,7 +26,15 @@ export const getMedicamentos = ( page = 0 ) => {
 export const addNewMedicamento = ( medicamento ) => {
     return async( dispatch, getState ) => {
         try {
-            const response = await fetchSinToken('medicine', medicamento, 'POST')
+            const { auth } = getState()
+            const { authToken } = auth
+
+            const response = await fetchAPI(
+                'medicine', 
+                medicamento, 
+                'POST',
+                authToken
+            )
             const data = await response.json()
     
             if( response.status === 201 ){
@@ -53,7 +61,7 @@ export const addNewMedicamento = ( medicamento ) => {
 export const startUpdateMedicamento = ( medId, medData ) => {
     return async( dispatch, getState ) => {
         try {
-            const response = await fetchSinToken(
+            const response = await fetchAPI(
                 `medicine/${ medId }`,
                 medData,
                 'PUT'
@@ -83,7 +91,7 @@ export const startDeleteMedicamento = ( medId ) => {
     return async( dispatch, getState ) => {
         try {
             
-            const response = await fetchSinToken(
+            const response = await fetchAPI(
                 `medicine/${medId}`,
                 {},
                 'DELETE'
