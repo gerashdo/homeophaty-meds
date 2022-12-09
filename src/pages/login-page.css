@@ -14,6 +14,7 @@ div.input-group{
 }
 
 main .section.login {
-    width: 20%;
+    width: 20rem;
+    max-width: 80%;
     padding: 1rem 2rem;
 }
