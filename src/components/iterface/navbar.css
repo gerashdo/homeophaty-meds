@@ -63,3 +63,19 @@ button.logout{
 button.logout:hover {
     background-color: var(--color-secondary-darker);
 }
+
+button .logout-icon {
+    display: none;
+}
+
+@media ( max-width: 400px ){
+    .main-navbar ul {
+        gap: 0.5rem
+    }
+    .text-navlink{
+        display: none;
+    }
+    button .logout-icon{
+        display: block;
+    }
+}

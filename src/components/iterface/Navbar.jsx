@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { CgPill } from "react-icons/cg";
+import { CgPill, CgHome, CgLogOut } from "react-icons/cg";
 
 import "./navbar.css"
 import { useDispatch } from "react-redux";
@@ -25,8 +25,8 @@ export const Navbar = () => {
                   end
                 >
                   <li>
-                    {/* <CgPill /> */}
-                    <span>
+                    <CgHome />
+                    <span className="text-navlink">
                       Inicio
                     </span> 
                   </li>
@@ -36,7 +36,7 @@ export const Navbar = () => {
                 >
                   <li>
                     <CgPill />
-                    <span>
+                    <span className="text-navlink">
                       Medicamentos
                     </span> 
                   </li>
@@ -48,7 +48,14 @@ export const Navbar = () => {
               <button
                 className="logout"
                 onClick={ handleLogout }
-              >Cerrar sesión</button>
+              >
+                <CgLogOut
+                  className="logout-icon"
+                />
+                  <span className="text-navlink">
+                    Cerrar sesión
+                  </span>
+              </button>
             </div>
         </nav>
       </div>

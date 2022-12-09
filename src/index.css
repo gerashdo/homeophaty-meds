@@ -75,6 +75,12 @@
   gap: 1rem;
 }
 
+@media (max-width: 400px){
+  .main-container{
+    grid-template-columns: 4rem auto;
+  }
+}
+
 .main-container > main {
   min-height: 100%;
   padding: 1rem 0rem;
