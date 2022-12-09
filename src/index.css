@@ -75,11 +75,7 @@
   gap: 1rem;
 }
 
-@media (max-width: 500px){
-  .main-container{
-    grid-template-columns: 4rem auto;
-  }
-}
+
 
 .main-container > main {
   min-height: 100%;
@@ -138,6 +134,16 @@ input.interface {
 
 .input-group-h {
   margin: 1rem 0;
+}
+
+@media (max-width: 500px){
+  .main-container{
+    grid-template-columns: 4rem auto;
+  }
+
+  .aside {
+    display: none;
+  }
 }
 
 
