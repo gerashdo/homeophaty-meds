@@ -9,7 +9,7 @@ export const getMedicamentos = ( page = 0 ) => {
 
         dispatch( startLoadingMedicamentos() )
 
-        const response = await fetchAPI('medicine')
+        const response = await fetchAPI({ endpoint: 'medicine'})
         const data = await response.json()
 
         if( response.status !== 200 ){
@@ -29,12 +29,12 @@ export const addNewMedicamento = ( medicamento ) => {
             const { auth } = getState()
             const { authToken } = auth
 
-            const response = await fetchAPI(
-                'medicine', 
-                medicamento, 
-                'POST',
-                authToken
-            )
+            const response = await fetchAPI({
+                endpoint: 'medicine', 
+                data: medicamento, 
+                method: 'POST',
+                token: authToken
+            })
             const data = await response.json()
     
             if( response.status === 201 ){
@@ -61,11 +61,15 @@ export const addNewMedicamento = ( medicamento ) => {
 export const startUpdateMedicamento = ( medId, medData ) => {
     return async( dispatch, getState ) => {
         try {
-            const response = await fetchAPI(
-                `medicine/${ medId }`,
-                medData,
-                'PUT'
-            )
+            const { auth } = getState()
+            const { authToken } = auth
+
+            const response = await fetchAPI({
+                endpoint: `medicine/${ medId }`,
+                data: medData,
+                method: 'PUT',
+                token: authToken
+            })
             const data = await response.json()
 
             if( response.status === 200 ){
@@ -90,12 +94,14 @@ export const startUpdateMedicamento = ( medId, medData ) => {
 export const startDeleteMedicamento = ( medId ) => {
     return async( dispatch, getState ) => {
         try {
+            const { auth } = getState()
+            const { authToken } = auth
             
-            const response = await fetchAPI(
-                `medicine/${medId}`,
-                {},
-                'DELETE'
-            )
+            const response = await fetchAPI({
+                endpoint: `medicine/${medId}`,
+                method: 'DELETE',
+                token: authToken
+            })
             const data = await response.json()
             
             if( response.status === 202 ){

@@ -2,7 +2,12 @@ import { getEnvVariables } from "../helpers/getEnvVariables"
 
 const { VITE_API_BACKEND_URL } = getEnvVariables();
 
-export const fetchAPI = ( endpoint, data, method='GET', token = null ) => {
+export const fetchAPI = ({
+    endpoint = '', 
+    token = null, 
+    data = {}, 
+    method='GET' 
+}) => {
     const url = `${ VITE_API_BACKEND_URL }/${ endpoint }`;
     const headers = {
         'Content-type': 'application/json',

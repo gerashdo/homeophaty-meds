@@ -13,7 +13,11 @@ export const useAuthStore = () => {
     const startLoginUser = async( data ) => {
         const url = 'auth/login'
         try {
-            const response = await fetchAPI( url, data, 'POST')
+            const response = await fetchAPI({ 
+                endpoint: url, 
+                data, 
+                method: 'POST'
+            })
             const dataResponse = await response.json()
 
             if( response.status !== 200 ){
@@ -33,12 +37,11 @@ export const useAuthStore = () => {
 
     const startRenovateToken = async() => {
         try {
-            const response = await fetchAPI( 
-                'auth/renovate',
-                {},
-                'GET',
-                authToken
-            )
+            const response = await fetchAPI({ 
+                endpoint: 'auth/renovate',
+                method: 'GET',
+                token: authToken
+            })
 
             const data = await response.json()
     

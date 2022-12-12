@@ -134,7 +134,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
                         <button 
                             type="submit"
                             className="primary"
-                        >Guardar descripción</button>
+                        >Guardar cambios</button>
                     </div>
                 </form>
             </div>
