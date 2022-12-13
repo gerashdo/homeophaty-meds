@@ -1,40 +1,63 @@
-import { createContentErrorAlert } from "../../../helpers"
-import { fetchAPI } from "../../../hooks/apiFetch"
-import { startAlert } from "../ui"
-import { addMedicamento, deleteMedicamento, setMedicamentos, startLoadingMedicamentos, updateMedicamento } from "./medicamentoSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { 
+    addMedicamento, 
+    changeLoadingMedicamentos, 
+    deleteMedicamento, 
+    setMedicamentos, 
+    updateMedicamento 
+} from "../store/slices/medicamentos"
+import { startAlert } from "../store/slices/ui"
+import { fetchAPI } from "./apiFetch"
+import { createContentErrorAlert } from "../helpers"
 
 
-export const getMedicamentos = ( page = 0 ) => {
-    return async( dispatch, getState ) => {
+export const useMedsStore = () => {
 
-        dispatch( startLoadingMedicamentos() )
+    const dispatch = useDispatch()
+    const {
+        isLoading,
+        page,
+        medicamentos,
+        searchValue
+    } = useSelector( state => state.medicamento )
 
-        const response = await fetchAPI({ endpoint: 'medicine'})
-        const data = await response.json()
+    const { authToken } = useSelector( state => state.auth )
 
-        if( response.status !== 200 ){
-            dispatch( startAlert( createContentErrorAlert( data ) ) )
-        }else{
-            dispatch( setMedicamentos({
-                page: page + 1,
-                medicamentos: data.medicines
-            }))
-        }
-    }
-}
-
-export const addNewMedicamento = ( medicamento ) => {
-    return async( dispatch, getState ) => {
+    const startLoadingMedicamentos = async ( page = 0 ) => {
         try {
-            const { auth } = getState()
-            const { authToken } = auth
 
+            dispatch( changeLoadingMedicamentos() )
+    
+            const response = await fetchAPI({ endpoint: 'medicine'})
+            const data = await response.json()
+    
+            if( response.status !== 200 ){
+                dispatch( startAlert( createContentErrorAlert( data ) ) )
+            }else{
+                dispatch( setMedicamentos({
+                    page: page + 1,
+                    medicamentos: data.medicines
+                }))
+            }
+        } catch (error) {
+            dispatch( startAlert({
+                alertMessage: error,
+                alertType: 'error'
+            }) )
+        }
+    
+    }
+
+    const startAddNewMedicamento = async ( medicamento ) => {
+
+        try {
             const response = await fetchAPI({
                 endpoint: 'medicine', 
                 data: medicamento, 
                 method: 'POST',
                 token: authToken
             })
+
             const data = await response.json()
     
             if( response.status === 201 ){
@@ -56,13 +79,9 @@ export const addNewMedicamento = ( medicamento ) => {
             }) )
         }
     }
-}
 
-export const startUpdateMedicamento = ( medId, medData ) => {
-    return async( dispatch, getState ) => {
+    const startUpdateMedicamento = async ( medId, medData ) => {
         try {
-            const { auth } = getState()
-            const { authToken } = auth
 
             const response = await fetchAPI({
                 endpoint: `medicine/${ medId }`,
@@ -89,14 +108,10 @@ export const startUpdateMedicamento = ( medId, medData ) => {
             }) )
         }
     }
-}
 
-export const startDeleteMedicamento = ( medId ) => {
-    return async( dispatch, getState ) => {
+    const startDeleteMedicamento = async ( medId ) => {
         try {
-            const { auth } = getState()
-            const { authToken } = auth
-            
+
             const response = await fetchAPI({
                 endpoint: `medicine/${medId}`,
                 method: 'DELETE',
@@ -120,5 +135,16 @@ export const startDeleteMedicamento = ( medId ) => {
                 alertType: 'error',
             }))
         }
+    }
+
+    return {
+        isLoading,
+        page,
+        medicamentos,
+        searchValue,
+        startLoadingMedicamentos,
+        startAddNewMedicamento,
+        startUpdateMedicamento,
+        startDeleteMedicamento,
     }
 }

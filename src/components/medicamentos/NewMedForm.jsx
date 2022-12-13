@@ -1,18 +1,17 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
 import { chOptions, formatMedData, medicineTypes } from "../../helpers"
 import { useForm } from "../../hooks/useForm"
-import { addNewMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
 import { MedSmallCard } from "./MedSmallCard"
 import { RadioOptions } from "../iterface/RadioOptions"
 
 import './new-med-form.css'
+import { useMedsStore } from "../../hooks/useMedsStore"
 
 
 export const NewMedForm = () => {
-    const dispatch = useDispatch()
+    const { startAddNewMedicamento } = useMedsStore()
 
     const [ innerMeds, changeInnerMeds ] = useState([])
     const [ values, handleChange, setValues, reset ] = useForm({ name:'', ch:'', type: medicineTypes.Medicamento })
@@ -34,7 +33,7 @@ export const NewMedForm = () => {
             type
         })
 
-        dispatch( addNewMedicamento( data ) )
+        startAddNewMedicamento( data )
 
         changeInnerMeds([])
         reset()

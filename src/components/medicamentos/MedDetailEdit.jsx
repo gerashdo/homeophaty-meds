@@ -1,17 +1,18 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { MedSmallCard } from "./MedSmallCard"
 import { useForm } from "../../hooks/useForm"
-import { startUpdateMedicamento } from "../../store/slices/medicamentos"
 import { InnerMedsForm } from "./InnerMedsForm"
 import { chOptions, medExists, medicineTypes } from "../../helpers"
 import { RadioOptions } from "../iterface/RadioOptions"
+import { startAlert } from "../../store/slices/ui"
+import { useMedsStore } from "../../hooks"
 
 import './med-detail-edit.css'
-import { startAlert } from "../../store/slices/ui"
 
 export const MedDetailEdit = ({ medicamento, onCancel }) => {
     const dispatch = useDispatch()
-    const { medicamentos } = useSelector( state => state.medicamento )
+    const { startUpdateMedicamento, medicamentos } = useMedsStore()
+
     const [ values, handleChange, setValues ] = useForm({
         name: medicamento.name,
         description: medicamento.description,
@@ -38,7 +39,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
         }
 
         // TODO: Utilizar un estas seguro por si viene vacio
-        dispatch( startUpdateMedicamento( medicamento.id, medData ))
+        startUpdateMedicamento( medicamento.id, medData )
         onCancel()
     }
 
@@ -48,7 +49,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
             medicines: medicamento.medicines.filter( med => med._id !== id )
         }
 
-        dispatch( startUpdateMedicamento( medicamento.id, medUpdated ) )
+        startUpdateMedicamento( medicamento.id, medUpdated )
     }
 
     const handleOnChangeInnerMeds = ( newInnerMeds ) => {
@@ -56,7 +57,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
             ...medicamento,
             medicines: newInnerMeds
         }
-        dispatch( startUpdateMedicamento( medicamento.id, medUpdated ) )
+        startUpdateMedicamento( medicamento.id, medUpdated )
     }
 
     const handleChChange = ( e ) => {

@@ -11,8 +11,8 @@ export const medicamentoSlice = createSlice({
     name: 'medicamento',
     initialState,
     reducers: {
-        startLoadingMedicamentos: ( state ) => {
-            state.isLoading = true
+        changeLoadingMedicamentos: ( state ) => {
+            state.isLoading = !state.isLoading
         },
         setMedicamentos: (state, action ) => {
             state.isLoading = false
@@ -37,7 +37,7 @@ export const medicamentoSlice = createSlice({
 })
 
 export const { 
-    startLoadingMedicamentos, 
+    changeLoadingMedicamentos, 
     setMedicamentos, 
     addMedicamento, 
     updateMedicamento, 
