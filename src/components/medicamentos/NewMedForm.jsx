@@ -1,13 +1,12 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { chOptions, formatMedData, medicineTypes } from "../../helpers"
 import { useForm } from "../../hooks/useForm"
-import { InnerMedsForm } from "./InnerMedsForm"
-import { MedSmallCard } from "./MedSmallCard"
 import { RadioOptions } from "../iterface/RadioOptions"
+import { useMedsStore } from "../../hooks/useMedsStore"
+import { InnerMedsForm } from "./InnerMedsForm"
+import { chOptions, formatMedData, medicineTypes } from "../../helpers"
 
 import './new-med-form.css'
-import { useMedsStore } from "../../hooks/useMedsStore"
 
 
 export const NewMedForm = () => {
@@ -21,7 +20,7 @@ export const NewMedForm = () => {
     useEffect(() => {
       setRadioButtonValue( Object.keys( medicineTypes ).find( key => medicineTypes[ key ] === type ))
     }, [type])
-    
+    console.log( 'rendered form ')
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -37,6 +36,13 @@ export const NewMedForm = () => {
 
         changeInnerMeds([])
         reset()
+    }
+
+    const handleOnChangeInnerMeds = ( medicine ) => {
+        changeInnerMeds([
+            ...innerMeds,
+            { ...medicine, '_id': medicine.id }
+        ])
     }
 
     const handleRemoveInnerMed = ( id ) => {
@@ -90,35 +96,12 @@ export const NewMedForm = () => {
                         </div>
                     )
                     : (
-                        <>
-                            {
-                                innerMeds.length > 0 && (
-                                    <div>
-                                        <ul>
-                                            {
-                                                innerMeds.map( med => (
-                                                    <MedSmallCard 
-                                                        key={ med.id } 
-                                                        medicamento={ med }
-                                                        onCloseInnerMed={ handleRemoveInnerMed }
-                                                        isDelete={ true }
-                                                    />
-                                                    ))
-                                                }
-                                        </ul>
-                                    </div>
-                                )
-                            }
-
-                            <div>
-                                <label htmlFor="inner_meds">Agregar medicamentos</label>
-                                <InnerMedsForm 
-                                    id="inner_meds"
-                                    onChangeInnerMeds={ changeInnerMeds }
-                                    innerMeds={ innerMeds }
-                                    />
-                            </div>
-                        </>
+                        <InnerMedsForm 
+                            innerMeds={ innerMeds } 
+                            onRemoveInnerMeds={ handleRemoveInnerMed }
+                            onChangeInnerMeds={ handleOnChangeInnerMeds }
+                            label='Agregar medicamentos'                        
+                        />
                     )
                 }
 

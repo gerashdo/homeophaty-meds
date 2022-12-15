@@ -17,11 +17,13 @@ export const MedDetail = ({ medicamento }) => {
                     :(<div className="inner-med-list">
                         <h4>Medicamentos</h4>
                         {
-                            medicamento.medicines.map( med => (<MedSmallCard
-                                key={ med._id || med.id } 
-                                medicamento={ med }
-                                isDelete={ false }
-                            />))
+                            medicamento.medicines.map( med => (
+                                <MedSmallCard
+                                    key={ med._id || med.id } 
+                                    medicamento={ med }
+                                    isDelete={ false }
+                                />
+                            ))
                         }
                     </div>)
                 }

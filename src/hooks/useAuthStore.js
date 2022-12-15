@@ -29,7 +29,7 @@ export const useAuthStore = () => {
             
         } catch (error) {
             dispatch( startAlert({
-                alertMessage: error,
+                alertMessage: error.toString(),
                 alertType: 'error'
             }) )
         }
@@ -56,7 +56,7 @@ export const useAuthStore = () => {
             
         } catch (error) {
             dispatch( startAlert({
-                alertMessage: error,
+                alertMessage: error.toString(),
                 alertType: 'error'
             }) )
         }

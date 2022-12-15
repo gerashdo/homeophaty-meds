@@ -1,10 +1,9 @@
 import { useDispatch } from "react-redux"
-import { MedSmallCard } from "./MedSmallCard"
 import { useForm } from "../../hooks/useForm"
-import { InnerMedsForm } from "./InnerMedsForm"
 import { chOptions, medExists, medicineTypes } from "../../helpers"
 import { RadioOptions } from "../iterface/RadioOptions"
 import { startAlert } from "../../store/slices/ui"
+import { InnerMedsForm } from "./InnerMedsForm"
 import { useMedsStore } from "../../hooks"
 
 import './med-detail-edit.css'
@@ -52,7 +51,11 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
         startUpdateMedicamento( medicamento.id, medUpdated )
     }
 
-    const handleOnChangeInnerMeds = ( newInnerMeds ) => {
+    const handleOnChangeInnerMeds = ( newInnerMed ) => {
+        const newInnerMeds = [
+            ...medicamento.medicines,
+            { ...newInnerMed, '_id': newInnerMed.id }
+        ]
         const medUpdated = {
             ...medicamento,
             medicines: newInnerMeds
@@ -92,29 +95,16 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
                 {
                     medicamento.type === medicineTypes.Medicamento
                     ? null 
-                    :(<div className="inner-med-list">
-                        <h4>Medicamentos</h4>
-                        <InnerMedsForm 
-                            onChangeInnerMeds={ handleOnChangeInnerMeds }
-                            innerMeds={ medicamento.medicines }
-                        />
-                        {
-                            medicamento.medicines.length > 0
-                            && 
-                            (
-                                <>
-                                    {
-                                        medicamento.medicines.map( med => (<MedSmallCard
-                                            key={ med._id || med.id } 
-                                            medicamento={ med }
-                                            onCloseInnerMed={ handleRemoveMed }
-                                            isDelete={ true }
-                                        />))
-                                    }
-                                </>
-                            )
-                        }
-                    </div>)
+                    :(
+                        <div className="inner-med-list">
+                            <h4>Medicamentos</h4>
+                            <InnerMedsForm
+                                innerMeds={ medicamento.medicines }
+                                onRemoveInnerMeds={ handleRemoveMed }
+                                onChangeInnerMeds={ handleOnChangeInnerMeds }
+                            />
+                        </div>
+                    )
                 }
                 <form
                     onSubmit={ handleSubmit }
