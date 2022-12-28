@@ -1,8 +1,9 @@
 import { BsFillXCircleFill } from "react-icons/bs";
+import PropTypes from "prop-types"
 
 import './med-small-card.css'
 
-export const MedSmallCard = ({ medicamento, onCloseInnerMed, isDelete }) => {
+export const MedSmallCard = ({ medicamento, onCloseInnerMed, isDelete = false }) => {
 
     const handleCloseCard = ({ target }) =>{
         const id = target.closest('div').id
@@ -18,7 +19,8 @@ export const MedSmallCard = ({ medicamento, onCloseInnerMed, isDelete }) => {
             </div>
             {
                 isDelete 
-                ? (<div 
+                ? (<div
+                    data-testid="cancel-button"
                     className="cancel-button"
                     id={ medicamento.id || medicamento._id}
                     onClick={ handleCloseCard }
@@ -29,5 +31,11 @@ export const MedSmallCard = ({ medicamento, onCloseInnerMed, isDelete }) => {
             }
             
         </div>
-  )
+    )
+}
+
+MedSmallCard.prototype = {
+    medicamento: PropTypes.object.isRequired,
+    onCloseInnerMed: PropTypes.func.isRequired,
+    isDelete: PropTypes.bool
 }
