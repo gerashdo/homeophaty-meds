@@ -4,6 +4,7 @@ import { abrotanum30, calendula200, calendula30 } from "../fixtures/meds";
 
 describe('tests for searchMeds helper', () => {
     
+    
     test('should return a string with no blank spaces from the values of an array', () => {
         const strings = [ ' i do', ' not ', 'want to have', 'spaces ' ]
 
