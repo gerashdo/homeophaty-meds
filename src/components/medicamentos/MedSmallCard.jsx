@@ -34,7 +34,7 @@ export const MedSmallCard = ({ medicamento, onCloseInnerMed, isDelete = false })
     )
 }
 
-MedSmallCard.prototype = {
+MedSmallCard.propTypes = {
     medicamento: PropTypes.object.isRequired,
     onCloseInnerMed: PropTypes.func.isRequired,
     isDelete: PropTypes.bool
