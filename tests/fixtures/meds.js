@@ -10,6 +10,15 @@ export const abrotanum30 = {
     type: medicineTypes.Medicamento
 }
 
+export const abrotanum30Updated = {
+    name: 'Abrotanum',
+    ch: '30',
+    id: 1,
+    description: 'Es abrotanum pero actualizado',
+    medicines: [],
+    type: medicineTypes.Medicamento
+}
+
 export const calendula30 = {
     name: 'Calendula',
     ch: '30',
@@ -26,4 +35,25 @@ export const calendula200 = {
     description: 'Es calendula 200',
     medicines: [],
     type: medicineTypes.Medicamento
+}
+
+export const initialState = {
+    isLoading: false,
+    page: 0,
+    medicamentos: [],
+    searchValue: ''
+}
+
+export const setMedicinesState = {
+    isLoading: false,
+    page: 1,
+    medicamentos: [ abrotanum30, calendula200, calendula30 ],
+    searchValue: ''
+}
+
+export const oneMedicineState = {
+    isLoading: false,
+    page: 0,
+    medicamentos: [ abrotanum30 ],
+    searchValue: ''
 }
