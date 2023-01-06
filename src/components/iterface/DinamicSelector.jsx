@@ -1,6 +1,8 @@
 
 import { useEffect, useState } from 'react'
 import { searchStringInMed } from '../../helpers'
+import PropTypes from "prop-types"
+
 import './dinamic-selector.css'
 
 export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSetValueId }) => {
@@ -39,9 +41,16 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSet
                             { med.name } { med.ch }
                         </li>
                     ))
-                    : <li>Sin resultados</li>
+                    : <li data-testid="no-results">Sin resultados</li>
                 }
             </ul>
         </div>
     )
+}
+
+DinamicSelector.propTypes = {
+    resetValues: PropTypes.array.isRequired, 
+    valueForFilter: PropTypes.string, 
+    onSetValue: PropTypes.func.isRequired, 
+    onSetValueId: PropTypes.func.isRequired,
 }
