@@ -44,6 +44,8 @@ export const initialState = {
     searchValue: ''
 }
 
+export const medsListFixture = [ abrotanum30, calendula200, calendula30 ]
+
 export const setMedicinesState = {
     isLoading: false,
     page: 1,
