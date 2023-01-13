@@ -5,9 +5,9 @@ import { useMedsStore } from "../../src/hooks/useMedsStore";
 import { authSlice } from "../../src/store/slices/auth/authSlice";
 import { medicamentoSlice } from "../../src/store/slices/medicamentos/medicamentoSlice";
 import * as medicamentoState from "../../src/store/slices/medicamentos/medicamentoSlice";
+import * as uiState from "../../src/store/slices/ui/uiSlice";
 import { uiSlice } from "../../src/store/slices/ui/uiSlice";
-import { initialState, medsListFixture } from "../fixtures/meds";
-
+import { initialState, medsListFixture, abrotanum30 } from "../fixtures/meds";
 
 const getMockStore = ( initialState ) => {
     return configureStore({
@@ -74,6 +74,53 @@ describe('Tests for useMedsStore', () => {
         expect( changeLoadingMedicamentosMock ).toHaveBeenCalled()
     });
 
-    
+    test('should start an error alert if the status code of the request is not 200 when loading medicines', async() => {
+        const mockStore = getMockStore( initialState )
+        jest.spyOn( global, 'fetch')
+            .mockImplementationOnce( () => Promise.resolve({
+                status: 400,
+                json: () => Promise.resolve({ msg: 'error ocurred' })
+            }))
+        const startAlertMock = jest.spyOn( uiState, 'startAlert')
+        
+        const { result } = renderHook( () => useMedsStore(), {
+            wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
+        })
 
+        await act( async() => {
+            await result.current.startLoadingMedicamentos()
+        })
+
+        expect( result.current.isLoading ).toBeFalsy()
+        expect( startAlertMock ).toHaveBeenCalledWith({
+            alertMessage: expect.any( String ),
+            alertType: 'error'
+        })
+    });
+
+    test('should add a new medicine correctly', async() => {
+        const mockStore = getMockStore( initialState )
+        jest.spyOn( global, 'fetch')
+            .mockImplementationOnce( () => Promise.resolve({
+                status: 201,
+                json: () => Promise.resolve({ medicine: abrotanum30 })
+            }))
+        const startAlertMock = jest.spyOn( uiState, 'startAlert')
+        
+        const { result } = renderHook( () => useMedsStore(), {
+            wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
+        })
+
+        await act( async() => {
+            await result.current.startAddNewMedicamento( abrotanum30 )
+        })
+
+        expect( result.current.medicamentos ).toHaveLength( 1 )
+        expect( result.current.medicamentos[0] ).toEqual( abrotanum30 )
+        expect( startAlertMock ).toHaveBeenCalledWith({
+            alertMessage: expect.any( String ),
+            alertType: 'success'
+        })
+    });
+    
 });
