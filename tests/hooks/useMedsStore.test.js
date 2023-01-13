@@ -122,5 +122,29 @@ describe('Tests for useMedsStore', () => {
             alertType: 'success'
         })
     });
+
+    test('should start and error alert if the status code is different to 201', async() => {
+        const mockStore = getMockStore( initialState )
+        jest.spyOn( global, 'fetch')
+            .mockImplementationOnce( () => Promise.resolve({
+                status: 400,
+                json: () => Promise.resolve({ msg: 'Error occurred' })
+            }))
+        const startAlertMock = jest.spyOn( uiState, 'startAlert')
+
+        const { result } = renderHook( () => useMedsStore(), {
+            wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
+        })
+
+        await act( async() => {
+            await result.current.startAddNewMedicamento( abrotanum30 )
+        })
+
+        expect( result.current.medicamentos ).toHaveLength( 0 )
+        expect( startAlertMock ).toHaveBeenCalledWith({
+            alertMessage: expect.any( String ),
+            alertType: 'error'
+        })
+    });
     
 });
