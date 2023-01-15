@@ -30,9 +30,10 @@ export const useMedsStore = () => {
     
             const response = await fetchAPI({ endpoint: 'medicine'})
             const data = await response.json()
-    
+                
             if( response.status !== 200 ){
                 dispatch( startAlert( createContentErrorAlert( data ) ) )
+                dispatch( changeLoadingMedicamentos() )
             }else{
                 dispatch( setMedicamentos({
                     page: page + 1,
@@ -40,6 +41,7 @@ export const useMedsStore = () => {
                 }))
             }
         } catch (error) {
+            
             dispatch( startAlert({
                 alertMessage: error,
                 alertType: 'error'
