@@ -6,9 +6,11 @@ export const fetchAPI = ({
     endpoint = '', 
     token = null, 
     data = {}, 
-    method='GET' 
+    method='GET',
+    queryParams = null,
 }) => {
-    const url = `${ VITE_API_BACKEND_URL }/${ endpoint }`;
+
+    let url = `${ VITE_API_BACKEND_URL }/${ endpoint }`;
     const headers = {
         'Content-type': 'application/json',
         'Accept': 'application/json'
@@ -19,6 +21,11 @@ export const fetchAPI = ({
     }
 
     if( method === 'GET' ){
+        // The query params are added if there is any
+        if( queryParams ){
+            url += '?' + ( new URLSearchParams( queryParams ) ).toString()
+        }
+        
         return fetch(url, {
             headers
         })

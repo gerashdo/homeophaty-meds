@@ -5,6 +5,8 @@ const initialState = {
     alertMessage: '',
     alertType: null,
     alertDuration: 8,
+    page: 1,
+    totalPages: null,
 }
 
 export const uiSlice = createSlice({
@@ -19,6 +21,10 @@ export const uiSlice = createSlice({
         },
         stopAlert: ( state ) => {
             state.alertActive = false
+        },
+        setPageInformation: ( state, action ) => {
+            state.page = action.payload.page
+            state.totalPages = action.payload.totalPages
         }
     }
 })
@@ -26,4 +32,5 @@ export const uiSlice = createSlice({
 export const { 
     startAlert, 
     stopAlert,
+    setPageInformation,
 } = uiSlice.actions

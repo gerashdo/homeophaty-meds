@@ -6,7 +6,7 @@ import {
     setMedicamentos, 
     updateMedicamento 
 } from "../store/slices/medicamentos"
-import { startAlert } from "../store/slices/ui"
+import { setPageInformation, startAlert } from "../store/slices/ui"
 import { fetchAPI } from "./apiFetch"
 import { createContentErrorAlert } from "../helpers"
 
@@ -23,12 +23,12 @@ export const useMedsStore = () => {
 
     const { authToken } = useSelector( state => state.auth )
 
-    const startLoadingMedicamentos = async ( page = 0 ) => {
+    const startLoadingMedicamentos = async ( queryParams ) => {
         try {
 
             dispatch( changeLoadingMedicamentos() )
     
-            const response = await fetchAPI({ endpoint: 'medicine'})
+            const response = await fetchAPI({ endpoint: 'medicine', queryParams })
             const data = await response.json()
                 
             if( response.status !== 200 ){
@@ -36,8 +36,11 @@ export const useMedsStore = () => {
                 dispatch( changeLoadingMedicamentos() )
             }else{
                 dispatch( setMedicamentos({
-                    page: page + 1,
                     medicamentos: data.medicines
+                }))
+                dispatch( setPageInformation({
+                    page: Number(data.page),
+                    totalPages: data.totalPages,
                 }))
             }
         } catch (error) {

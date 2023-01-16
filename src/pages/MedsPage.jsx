@@ -12,12 +12,17 @@ import "./meds-page.css"
 
 export const MedsPage = () => {
     const dispatch = useDispatch()
+    const { page, totalPages } = useSelector( state => state.ui )
     const { searchValue } = useSelector( state => state.medicamento )
     const { startLoadingMedicamentos } = useMedsStore()
 
     useEffect(() => {
-        startLoadingMedicamentos()
+        startLoadingMedicamentos({ page })
     }, [])
+
+    const onClickPageItem = ( pageNumber ) => {
+        startLoadingMedicamentos({ page: pageNumber })
+    }
 
     return (
         <>
@@ -39,7 +44,11 @@ export const MedsPage = () => {
                             searchVariable={ searchValue }
                         />
                         <div className="pagination">
-                            <Paginate />
+                            <Paginate 
+                                totalPages={ totalPages }
+                                currentPage={ page }
+                                onClickItem={ onClickPageItem }
+                            />
                         </div>
                     </section>
                 </main>

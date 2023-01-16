@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react"
 
 
-export const usePaginate = ( totalItems ) => {
+export const usePaginate = ( totalPages, actualPage ) => {
   
-    const [currentPage, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState( actualPage )
     const [pages, setPages] = useState([])
 
     const createNumbers = () => {
         const pagesArray = []
-        if( totalItems <= 4 ){
-            for (let index = 1; index <= totalItems; index++) {
+        if( totalPages <= 4 ){
+            for (let index = 1; index <= totalPages; index++) {
                 pagesArray.push( index )
             }
         }else if( currentPage <= 3){
             for (let index = 1; index <= 4; index++) {
                 pagesArray.push( index )
             }
-        }else if( currentPage === totalItems ){
-            for (let index = totalItems - 3; index <= totalItems; index++) {
+        }else if( currentPage === totalPages ){
+            for (let index = totalPages - 3; index <= totalPages; index++) {
                 pagesArray.push( index )
             }
         }else{
@@ -30,7 +30,7 @@ export const usePaginate = ( totalItems ) => {
 
     useEffect(() => {
         setPages( createNumbers() )
-    }, [ currentPage ])
+    }, [ currentPage, totalPages ])
 
     return {
         currentPage,

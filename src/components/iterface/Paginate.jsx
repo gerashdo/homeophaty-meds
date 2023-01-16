@@ -1,18 +1,16 @@
-import { useEffect } from "react"
-import { useState } from "react"
 import { PaginateItem } from "./PaginateItem"
-
-import './paginate.css'
 import { usePaginate } from "../../hooks/usePaginate"
 
-const numberElements = 5
+import './paginate.css'
 
-export const Paginate = () => {
 
-    const { setCurrentPage, currentPage, pages } = usePaginate( numberElements )
+export const Paginate = ({ onClickItem, totalPages, currentPage: actualPage }) => {
+
+    const { setCurrentPage, currentPage, pages } = usePaginate( totalPages, actualPage )
 
     const onItemClick = ( number ) => {
         setCurrentPage( number )
+        onClickItem( number )
     }
 
     return (

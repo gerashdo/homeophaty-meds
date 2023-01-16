@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     isLoading: false,
-    page: 0,
     medicamentos: [],
     searchValue: ''
 }
