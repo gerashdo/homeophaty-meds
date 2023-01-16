@@ -1,5 +1,6 @@
 import { PaginateItem } from "./PaginateItem"
 import { usePaginate } from "../../hooks/usePaginate"
+import PropTypes from 'prop-types'
 
 import './paginate.css'
 
@@ -27,4 +28,10 @@ export const Paginate = ({ onClickItem, totalPages, currentPage: actualPage }) =
             }
         </div>
     )
+}
+
+Paginate.propTypes = {
+    onClickItem: PropTypes.func.isRequired,
+    totalPages: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired,
 }
