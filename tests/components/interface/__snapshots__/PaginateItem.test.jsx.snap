@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test for <PaginateItem /> component should render properly 1`] = `
+<div>
+  <div
+    class="paginate-item "
+    data-testid="item-container"
+  >
+    2
+  </div>
+</div>
+`;

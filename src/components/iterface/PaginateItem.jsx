@@ -11,8 +11,9 @@ export const PaginateItem = ({ number, onItemClick, active = false }) => {
 
     return (
         <div
-            className={`paginate-item ${ active && 'active'}` }
+            className={`paginate-item ${ active ? 'active' : '' }` }
             onClick={ onClick }
+            data-testid="item-container"
         >
             { number }
         </div>
