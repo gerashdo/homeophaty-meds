@@ -5,6 +5,7 @@ import { MedList } from "../components/medicamentos/MedList"
 import { NewMedForm } from "../components/medicamentos/NewMedForm"
 import { useMedsStore } from "../hooks"
 import { changeSearchValue } from "../store/slices/medicamentos"
+import { Paginate } from "../components/iterface/Paginate"
 
 import "./meds-page.css"
 
@@ -37,6 +38,9 @@ export const MedsPage = () => {
                         <MedList
                             searchVariable={ searchValue }
                         />
+                        <div className="pagination">
+                            <Paginate />
+                        </div>
                     </section>
                 </main>
                 <aside className="aside">

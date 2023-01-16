@@ -1,0 +1,26 @@
+
+.paginate-item {
+    align-items: center;
+    background-color: var(--color-gray-background);
+    border-radius: 50%;
+    display: flex;
+    font-weight: var(--font-bold);
+    height: 4rem;
+    justify-content: center;
+    padding: 1rem;
+    cursor: pointer;
+    width: 4rem;
+}
+
+.paginate-item:hover{
+    background-color: var(--color-gray-background-darker);
+}
+
+.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.active:hover {
+    background-color: var(--color-primary-darker);
+}

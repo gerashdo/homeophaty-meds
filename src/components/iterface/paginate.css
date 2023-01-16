@@ -1,0 +1,9 @@
+
+
+.paginate-container {
+    display: flex;
+    margin: 2rem;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
