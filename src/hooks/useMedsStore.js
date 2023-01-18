@@ -44,9 +44,9 @@ export const useMedsStore = () => {
                 }))
             }
         } catch (error) {
-            
+            dispatch( changeLoadingMedicamentos() )
             dispatch( startAlert({
-                alertMessage: error,
+                alertMessage: 'Error interno, contacte al administrador',
                 alertType: 'error'
             }) )
         }
@@ -79,7 +79,7 @@ export const useMedsStore = () => {
             
         } catch (error) {
             dispatch( startAlert({
-                alertMessage: error,
+                alertMessage: 'Error interno, contacte al administrador',
                 alertType: 'error'
             }) )
         }
@@ -108,7 +108,7 @@ export const useMedsStore = () => {
             
         } catch (error) {
             dispatch( startAlert({
-                alertMessage: error,
+                alertMessage: 'Error interno, contacte al administrador',
                 alertType: 'error'
             }) )
         }
@@ -136,7 +136,7 @@ export const useMedsStore = () => {
 
         } catch (error) {
             dispatch( startAlert({
-                alertMessage: error,
+                alertMessage: 'Error interno, contacte al administrador',
                 alertType: 'error',
             }))
         }
