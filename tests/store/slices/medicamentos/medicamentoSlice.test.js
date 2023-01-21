@@ -20,9 +20,7 @@ describe('tests for medicamentoSlice', () => {
     
     test('should have the initial state', () => {
         
-        const state = medicamentoSlice.reducer( initialState, {} )
-        expect( medicamentoSlice.name ).toBe( "medicamento" )
-        expect( state ).toEqual( initialState )
+        expect( medicamentoSlice.getInitialState() ).toEqual( initialState )
     });
 
     test('should change the isLoadig propery', () => {

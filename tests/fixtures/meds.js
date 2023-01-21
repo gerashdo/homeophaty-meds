@@ -39,7 +39,6 @@ export const calendula200 = {
 
 export const initialState = {
     isLoading: false,
-    page: 0,
     medicamentos: [],
     searchValue: ''
 }
@@ -48,14 +47,12 @@ export const medsListFixture = [ abrotanum30, calendula200, calendula30 ]
 
 export const setMedicinesState = {
     isLoading: false,
-    page: 1,
     medicamentos: [ abrotanum30, calendula200, calendula30 ],
     searchValue: ''
 }
 
 export const oneMedicineState = {
     isLoading: false,
-    page: 0,
     medicamentos: [ abrotanum30 ],
     searchValue: ''
 }
