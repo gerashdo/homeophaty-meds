@@ -10,6 +10,7 @@ export const abrotanum30 = {
     type: medicineTypes.Medicamento
 }
 
+
 export const abrotanum30Updated = {
     name: 'Abrotanum',
     ch: '30',
@@ -33,6 +34,24 @@ export const calendula200 = {
     ch: '200',
     id: 3,
     description: 'Es calendula 200',
+    medicines: [],
+    type: medicineTypes.Medicamento
+}
+
+export const ignatia30 = {
+    name: 'Ignatia',
+    ch: '30',
+    id: 4,
+    description: 'Es ignatia 30',
+    medicines: [],
+    type: medicineTypes.Medicamento
+}
+
+export const abrotanum200 = {
+    name: 'Abrotanum',
+    ch: '200',
+    id: 5,
+    description: 'Es abrotanum 200',
     medicines: [],
     type: medicineTypes.Medicamento
 }
