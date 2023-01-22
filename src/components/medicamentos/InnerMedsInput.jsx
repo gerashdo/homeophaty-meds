@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types'
 import { useForm } from '../../hooks/useForm';
 import { startAlert } from '../../store/slices/ui';
 import { DinamicSelector } from '../iterface/DinamicSelector';
+import { searchStringInMed } from '../../helpers';
 
 import './inner-meds.css'
 
 // Parametros
 // onChangeInnerMeds: Accion a realizar cuando se agregue un nuevo medicamento
 // innerMeds: Lista de innerMeds actuales
-export const InnerMedsInput = ({ onChangeInnerMeds, innerMeds }) => {
+export const InnerMedsInput = ({ onChangeInnerMeds, innerMeds = [] }) => {
     const dispatch = useDispatch()
     const { medicamentos } = useSelector( state => state.medicamento )
     const [ values, handleChange, setValues, reset ] = useForm({ medicamento: '' })
     const { medicamento } = values
     const [ focused, setFocused ] = useState( false )
-    const [ valueId, setValueId ] = useState('')
 
     const changeInputValue = ( newValue ) => {
         setValues({
@@ -24,25 +25,28 @@ export const InnerMedsInput = ({ onChangeInnerMeds, innerMeds }) => {
         })
     }
 
-    //TODO: Obtener el objeto del que se dio click y esta en el input
     const handleAddMedicine = (e) => {
         e.preventDefault()
 
-        // Validate that the new innerMed is not in the list already
-        // Cuando el medicamento se va a crear los innerMeds tienen id
-        // Cuando se va a actualizar un medicamento los innerMeds tienen _id
-        if( innerMeds.find( med => med.id === valueId || med._id === valueId ) ){
+        // Si el medicamento ya esta dentro del los inner meds
+        if( searchStringInMed( medicamento, innerMeds ).length > 0 ){
             return dispatch( startAlert({
                 alertMessage: 'El medicamento ya se encuentra en la lista',
                 alertType: 'info'
             }) )
         }
 
-        const result = medicamentos.find( med => med.id === valueId )
+        const medsFound = searchStringInMed( medicamento, medicamentos )
 
-        if( result ){
-            onChangeInnerMeds( result )
+        // Si hay mas de un resultado con el texto introducido en el input
+        if( medsFound.length > 1 ){
+            return dispatch( startAlert({
+                alertMessage: 'Hay más de un medicamento con el nombre que introdujo',
+                alertType: 'info'
+            }) )
         }
+        
+        onChangeInnerMeds( medsFound[0] )
 
         reset()
     }
@@ -67,7 +71,6 @@ export const InnerMedsInput = ({ onChangeInnerMeds, innerMeds }) => {
                     resetValues={ medicamentos }
                     valueForFilter={ medicamento }
                     onSetValue={ changeInputValue }
-                    onSetValueId={ setValueId }
                 />
             }
         </div>
@@ -79,4 +82,9 @@ export const InnerMedsInput = ({ onChangeInnerMeds, innerMeds }) => {
             </button>
         </div>
     )
+}
+
+InnerMedsInput.propTypes = {
+    onChangeInnerMeds: PropTypes.func.isRequired,
+    innerMeds: PropTypes.arrayOf( PropTypes.object )
 }
