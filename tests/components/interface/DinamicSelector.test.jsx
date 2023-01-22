@@ -6,13 +6,11 @@ import { abrotanum30, calendula200, calendula30 } from "../../fixtures/meds";
 describe('Tests for <DinamicSelector />', () => {
     const resetValues = [ abrotanum30, calendula200, calendula30 ]
     const onSetValue = jest.fn()
-    const onSetValueId = jest.fn()
 
     test('should render the component properly', () => {
         render( <DinamicSelector 
             resetValues={ resetValues }
             onSetValue={ onSetValue }
-            onSetValueId={ onSetValueId }
         /> )
 
         expect( screen.getAllByRole("listitem").length ).toBe( resetValues.length )
@@ -23,7 +21,6 @@ describe('Tests for <DinamicSelector />', () => {
             resetValues={ resetValues }
             valueForFilter="no coincidence"
             onSetValue={ onSetValue }
-            onSetValueId={ onSetValueId }
         /> )
         
         expect( screen.getByTestId('no-results') ).toBeTruthy()
@@ -33,12 +30,10 @@ describe('Tests for <DinamicSelector />', () => {
         render( <DinamicSelector 
             resetValues={ resetValues }
             onSetValue={ onSetValue }
-            onSetValueId={ onSetValueId }
         /> )
         
         const firstResult = screen.getAllByRole('listitem')[0]
         fireEvent.mouseDown( firstResult )
         expect( onSetValue ).toBeCalled()
-        expect( onSetValueId ).toBeCalled()
     });
 });

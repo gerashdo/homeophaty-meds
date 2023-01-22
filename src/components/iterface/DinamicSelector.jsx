@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 
 import './dinamic-selector.css'
 
-export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSetValueId }) => {
+export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue }) => {
 
     const [valuesForUse, setValuesForUse] = useState( resetValues )
 
@@ -15,14 +15,10 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSet
         }else{
             setValuesForUse( resetValues )
         }
-    //   return () => {
-    //     second
-    //   }
     }, [valueForFilter, resetValues])
 
     const setSelectedValue = ({ target }) => {
         onSetValue( target.innerText )
-        onSetValueId( target.id )
     }
 
     return (
@@ -35,7 +31,6 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSet
                     ? valuesForUse.map( med => (
                         <li 
                             key={ med.id }
-                            id={ med.id }
                             onMouseDown={ setSelectedValue }
                         >
                             { med.name } { med.ch }
@@ -51,6 +46,5 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue, onSet
 DinamicSelector.propTypes = {
     resetValues: PropTypes.array.isRequired, 
     valueForFilter: PropTypes.string, 
-    onSetValue: PropTypes.func.isRequired, 
-    onSetValueId: PropTypes.func.isRequired,
+    onSetValue: PropTypes.func.isRequired,
 }
