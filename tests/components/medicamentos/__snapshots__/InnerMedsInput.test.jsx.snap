@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for <InnerMedsInput /> should render the component 1`] = `
+<div>
+  <div
+    class="horizontal-input-button"
+  >
+    <div
+      class="input process relative"
+    >
+      <input
+        class="inner-input"
+        name="medicamento"
+        value=""
+      />
+    </div>
+    <button
+      class="primary"
+    >
+      +
+    </button>
+  </div>
+</div>
+`;

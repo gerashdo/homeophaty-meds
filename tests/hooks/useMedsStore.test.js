@@ -8,6 +8,7 @@ import * as medicamentoState from "../../src/store/slices/medicamentos/medicamen
 import * as uiState from "../../src/store/slices/ui/uiSlice";
 import { uiSlice } from "../../src/store/slices/ui/uiSlice";
 import { initialState, medsListFixture, abrotanum30 } from "../fixtures/meds";
+import { alertCatchErrorContent, alertErrorContent, alertSuccessContent } from "../fixtures/alertFixtures";
 
 const getMockStore = ( initialState ) => {
     return configureStore({
@@ -23,21 +24,6 @@ const getMockStore = ( initialState ) => {
 }
 
 describe('Tests for useMedsStore', () => {
-
-    const alertSuccessContent = {
-        alertMessage: expect.any( String ),
-        alertType: 'success'
-    }
-
-    const alertErrorContent = {
-        alertMessage: expect.any( String ),
-        alertType: 'error'
-    }
-
-    const alertCatchErrorContent = {
-        alertMessage: 'Error interno, contacte al administrador',
-        alertType: 'error'
-    }
 
     beforeEach( () => {
         jest.clearAllMocks()
