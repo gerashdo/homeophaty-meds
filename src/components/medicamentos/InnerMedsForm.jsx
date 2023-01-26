@@ -1,8 +1,8 @@
 import { InnerMedsInput } from "./InnerMedsInput"
 import { MedSmallCard } from "./MedSmallCard"
+import PropTypes from "prop-types"
 
-
-export const InnerMedsForm = ({ innerMeds, onRemoveInnerMeds, onChangeInnerMeds, label = '' }) => {
+export const InnerMedsForm = ({ innerMeds = [], onRemoveInnerMeds, onChangeInnerMeds, label = '' }) => {
 
     const handleOnChangeInnerMeds = ( medicine ) => {
         onChangeInnerMeds( medicine )
@@ -46,4 +46,11 @@ export const InnerMedsForm = ({ innerMeds, onRemoveInnerMeds, onChangeInnerMeds,
         </>
 
     )
+}
+
+InnerMedsForm.propTypes = {
+    innerMeds: PropTypes.array,
+    onRemoveInnerMeds: PropTypes.func.isRequired,
+    onChangeInnerMeds: PropTypes.func.isRequired,
+    label: PropTypes.string,
 }
