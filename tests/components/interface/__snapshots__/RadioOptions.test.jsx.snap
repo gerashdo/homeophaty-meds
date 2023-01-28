@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tests for <RadioOptions /> should render the component correctly 1`] = `
+<div>
+  <div
+    class="radio-options"
+  >
+    <label
+      class="radio-input-container"
+    >
+      <input
+        id="a"
+        type="radio"
+        value="a"
+      />
+      <label
+        for="a"
+      >
+        a
+      </label>
+    </label>
+    <label
+      class="radio-input-container"
+    >
+      <input
+        id="b"
+        type="radio"
+        value="b"
+      />
+      <label
+        for="b"
+      >
+        b
+      </label>
+    </label>
+    <label
+      class="radio-input-container"
+    >
+      <input
+        id="c"
+        type="radio"
+        value="c"
+      />
+      <label
+        for="c"
+      >
+        c
+      </label>
+    </label>
+    <label
+      class="radio-input-container"
+    >
+      <input
+        id="d"
+        type="radio"
+        value="d"
+      />
+      <label
+        for="d"
+      >
+        d
+      </label>
+    </label>
+  </div>
+</div>
+`;
