@@ -1,7 +1,8 @@
+import PropTypes from "prop-types"
 
 import './radio-options.css'
 
-export const RadioOptions = ({ options, value, onChange }) => {
+export const RadioOptions = ({ options, value, onChange = () => {} }) => {
 
     return (
         <div 
@@ -26,4 +27,10 @@ export const RadioOptions = ({ options, value, onChange }) => {
             }
         </div>
     )
-    }
+}
+
+RadioOptions.propTypes = {
+    options: PropTypes.arrayOf( PropTypes.string ).isRequired,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+}
