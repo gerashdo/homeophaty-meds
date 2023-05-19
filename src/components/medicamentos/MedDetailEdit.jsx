@@ -30,7 +30,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
             name
         }
 
-        if( medExists( medicamentos, medicamento.id , medData ) ){
+        if( medExists( medicamentos, medicamento._id , medData ) ){
             return dispatch( startAlert({
                 alertMessage: 'El medicamento ya existe',
                 alertType: 'error',
@@ -38,7 +38,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
         }
 
         // TODO: Utilizar un estas seguro por si viene vacio
-        startUpdateMedicamento( medicamento.id, medData )
+        startUpdateMedicamento( medicamento._id, medData )
         onCancel()
     }
 
@@ -48,7 +48,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
             medicines: medicamento.medicines.filter( med => med._id !== id )
         }
 
-        startUpdateMedicamento( medicamento.id, medUpdated )
+        startUpdateMedicamento( medicamento._id, medUpdated )
     }
 
     const handleOnChangeInnerMeds = ( newInnerMed ) => {
@@ -60,7 +60,7 @@ export const MedDetailEdit = ({ medicamento, onCancel }) => {
             ...medicamento,
             medicines: newInnerMeds
         }
-        startUpdateMedicamento( medicamento.id, medUpdated )
+        startUpdateMedicamento( medicamento._id, medUpdated )
     }
 
     const handleChChange = ( e ) => {
