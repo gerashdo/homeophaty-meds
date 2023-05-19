@@ -4,21 +4,22 @@ import { medDescriptionForCard, medicineTypes } from '../../helpers'
 import { DialogModal } from '../iterface/DialogModal'
 
 import './med-card.css'
+import { useModal } from '../../hooks/useModal'
 
 export const MedCard = ({ medicamento, onCloseCard }) => {
 
-    const [ open, setOpen ] = useState( false )
+    const { isOpen, openModal, closeModal } = useModal()
 
     const handleCloseCard = (e) => {
-        setOpen( true )
+        openModal()
     }
 
     const onCancelModal = () => {
-        setOpen( false )
+        closeModal()
     }
 
     const onAcceptModal = () =>{
-        onCloseCard( medicamento.id )
+        onCloseCard( medicamento._id )
     }
 
     return (
@@ -37,7 +38,7 @@ export const MedCard = ({ medicamento, onCloseCard }) => {
                     </p>
                 </div>
                 <div className='card-footer'>
-                    <Link to={ `/medicamentos/${ medicamento.id }` }>
+                    <Link to={ `/medicamentos/${ medicamento._id }` }>
                         <button className='primary'>
                             Ver detalles
                         </button>
@@ -47,7 +48,7 @@ export const MedCard = ({ medicamento, onCloseCard }) => {
             <DialogModal
                 title='Confirmación de Eliminación'
                 content="¿Estas seguro de que quieres eliminar este medicamento?"
-                open={ open } 
+                open={ isOpen } 
                 onClose={ onCancelModal }
                 onAccept={ onAcceptModal }
             />
