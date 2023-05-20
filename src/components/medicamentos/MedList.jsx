@@ -6,34 +6,31 @@ import { useMedsStore } from '../../hooks'
 import './med-list.css'
 
 export const MedList = ({ searchVariable }) => {
-    const { medicamentos, startDeleteMedicamento } = useMedsStore()
+  const { medicamentos, startDeleteMedicamento } = useMedsStore()
 
-    const [ medsList, setMedsList ] = useState( medicamentos )
+  const [medsList, setMedsList] = useState(medicamentos)
 
-    useEffect(() => {
-      if( searchVariable ){
-        setMedsList( searchStringInMed( searchVariable, medicamentos ) )
-      }else{
-        setMedsList( medicamentos )
-      }
-    }, [ medicamentos, searchVariable ])
-
-    const onCloseCard = ( medId ) => {
-      startDeleteMedicamento( medId )
+  useEffect(() => {
+    if (searchVariable) {
+      setMedsList(searchStringInMed(searchVariable, medicamentos))
+    } else {
+      setMedsList(medicamentos)
     }
-    
+  }, [medicamentos, searchVariable])
 
-    return (
-        <div id="med-list" className='med-list'>
-            {
-                medsList.map(med => (
-                    <MedCard  
-                      key={ med.id } 
-                      medicamento={ med }
-                      onCloseCard={ onCloseCard }
-                    />
-                ))
-            }
-        </div>
+  const onCloseCard = (medId) => {
+    startDeleteMedicamento(medId)
+  }
+
+  return (
+    <div id='med-list' className='med-list'>
+      {medsList.map(med => (
+        <MedCard
+          key={med.id}
+          medicamento={med}
+          onCloseCard={onCloseCard}
+        />
+      ))}
+    </div>
   )
 }
