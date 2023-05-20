@@ -6,10 +6,11 @@ import { NewMedForm } from '../components/medicamentos/NewMedForm'
 import { useMedsStore } from '../hooks'
 import { changeSearchValue } from '../store/slices/medicamentos'
 import { Paginate } from '../components/iterface/Paginate'
-
-import './meds-page.css'
 import { useModal } from '../hooks/useModal'
 import { Modal } from '../components/iterface/Modal'
+import { SearchInput } from '../components/iterface/SearchInput'
+
+import './meds-page.css'
 
 export const MedsPage = () => {
   const dispatch = useDispatch()
@@ -26,22 +27,25 @@ export const MedsPage = () => {
     startLoadingMedicamentos({ page: pageNumber })
   }
 
+  const onSearchValueChange = (value) => {
+    dispatch(changeSearchValue(value))
+  }
+
+  const onResetSearchValue = () => {
+    dispatch(changeSearchValue(''))
+  }
+
   return (
     <>
       <TemplateSystemPage>
         <main className='meds'>
+          <SearchInput
+            onChange={onSearchValueChange}
+            inputValue={searchValue}
+            placeholder='Buscar medicamento'
+            onResetValue={onResetSearchValue}
+          />
           <section className='section meds-list'>
-            <div>
-              <input
-                id='med-search'
-                type='text'
-                className='interface med-search'
-                placeholder='Buscar'
-                name='medName'
-                onChange={(e) => dispatch(changeSearchValue(e.target.value))}
-                value={searchValue}
-              />
-            </div>
             <MedList
               searchVariable={searchValue}
             />
