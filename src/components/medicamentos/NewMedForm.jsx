@@ -7,7 +7,7 @@ import { chOptions, formatMedData, medicineTypes } from '../../helpers'
 
 import './new-med-form.css'
 
-export const NewMedForm = () => {
+export const NewMedForm = ({ onSave }) => {
   const { startAddNewMedicamento } = useMedsStore()
 
   const [innerMeds, changeInnerMeds] = useState([])
@@ -34,6 +34,7 @@ export const NewMedForm = () => {
 
     changeInnerMeds([])
     reset()
+    onSave()
   }
 
   const handleOnChangeInnerMeds = (medicine) => {
@@ -81,27 +82,25 @@ export const NewMedForm = () => {
           />
         </div>
 
-        {
-          type === medicineTypes.Medicamento
-            ? (
-              <div className='group-form'>
-                <label htmlFor='med_type'>CH</label>
-                <RadioOptions
-                  options={chOptions}
-                  value={ch}
-                  onChange={handleChRadioInputChange}
-                />
-              </div>
-              )
-            : (
-              <InnerMedsForm
-                innerMeds={innerMeds}
-                onRemoveInnerMeds={handleRemoveInnerMed}
-                onChangeInnerMeds={handleOnChangeInnerMeds}
-                label='Agregar medicamentos'
+        {type === medicineTypes.Medicamento
+          ? (
+            <div className='group-form'>
+              <label htmlFor='med_type'>CH</label>
+              <RadioOptions
+                options={chOptions}
+                value={ch}
+                onChange={handleChRadioInputChange}
               />
-              )
-        }
+            </div>
+            )
+          : (
+            <InnerMedsForm
+              innerMeds={innerMeds}
+              onRemoveInnerMeds={handleRemoveInnerMed}
+              onChangeInnerMeds={handleOnChangeInnerMeds}
+              label='Agregar medicamentos'
+            />
+            )}
 
         <button
           type='submit'

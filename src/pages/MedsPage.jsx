@@ -57,16 +57,11 @@ export const MedsPage = () => {
             Nuevo medicamento
           </button>
           <Modal
-            content={<NewMedForm />}
+            content={<NewMedForm onSave={closeModal} />}
             isOpen={isOpen}
             onCancel={closeModal}
-            // onClose={closeModal}
-            // onAccept={closeModal}
           />
         </main>
-        <aside className='aside'>
-          <NewMedForm />
-        </aside>
       </TemplateSystemPage>
     </>
   )
