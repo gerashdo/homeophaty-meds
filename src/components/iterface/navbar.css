@@ -49,16 +49,16 @@
     text-decoration: none;
 }
 
-.main-navbar a.active li{
+.main-navbar li a.active{
     font-weight: var(--font-bold);
     background-color: var(--color-secondary-darker);
 }
   
-.main-navbar ul li:hover, .main-navbar a.active li:hover, button.logout:hover {
+.main-navbar ul li a:hover, .main-navbar ul li a.active:hover, button.logout:hover {
     background-color: var(--color-secondary-lighter);
 }
 
-.main-navbar ul li:active, .main-navbar a.active li:active {
+.main-navbar ul li a:active {
     background-color: var(--color-secondary-darker);
 }
 
@@ -75,7 +75,7 @@ button.logout{
     border: none;
     outline: none;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 0.25rem;
 }
@@ -93,7 +93,7 @@ button .logout-icon{
 
 @media only screen and ( min-width: 500px ){
     .main-navbar{
-        padding: 5rem 0rem;
+        padding: 5rem 1rem;
     }
 
     .main-navbar nav {
