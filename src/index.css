@@ -70,12 +70,10 @@
 
 .main-container{
   display: grid;
-  grid-template-columns: 0.5fr 4fr 1fr;
+  grid-template-columns: 0.5fr 4fr;
   min-height: 100vh;
   gap: 1rem;
 }
-
-
 
 .main-container > main {
   min-height: 100%;
@@ -87,11 +85,6 @@ main .section {
   background-color: white;
   padding: 1rem;
   border-radius: 1rem;
-}
-
-.aside {
-  background-color: white;
-  padding: 2rem 3rem 2rem 1rem;
 }
 
 select.process, input.process, .input.process.icon {
@@ -138,15 +131,14 @@ input.interface {
 
 @media (max-width: 500px){
   .main-container{
-    grid-template-columns: 4rem auto;
+    display: flex;
+    flex-direction: column;
   }
 
-  .aside {
-    display: none;
+  .main-container > main {
+    padding: 1rem 1rem;
   }
 }
-
-
 
 /* Utilities */
 button {
