@@ -1,5 +1,4 @@
 
-
 div.search-input {
     align-items: center;
     background-color: white;
@@ -7,7 +6,7 @@ div.search-input {
     display: flex;
     min-width: 50%;
     padding: 0rem 1rem;
-    margin-block: 1rem;
+    /* margin-block: 1rem; */
 }
 
 div.search-input input {

@@ -39,12 +39,20 @@ export const MedsPage = () => {
     <>
       <TemplateSystemPage>
         <main className='meds'>
-          <SearchInput
-            onChange={onSearchValueChange}
-            inputValue={searchValue}
-            placeholder='Buscar medicamento'
-            onResetValue={onResetSearchValue}
-          />
+          <section className='header'>
+            <SearchInput
+              onChange={onSearchValueChange}
+              inputValue={searchValue}
+              placeholder='Buscar medicamento'
+              onResetValue={onResetSearchValue}
+            />
+            <button
+              className='primary'
+              onClick={() => openModal()}
+            >
+              Crear medicamento
+            </button>
+          </section>
           <section className='section meds-list'>
             <MedList
               searchVariable={searchValue}
@@ -57,9 +65,6 @@ export const MedsPage = () => {
               />
             </div>
           </section>
-          <button onClick={() => openModal()}>
-            Nuevo medicamento
-          </button>
           <Modal
             content={<NewMedForm onSave={closeModal} />}
             isOpen={isOpen}
