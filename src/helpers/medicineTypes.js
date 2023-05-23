@@ -1,5 +1,5 @@
 
 export const medicineTypes = {
-    'Medicamento': 'medicine',
-    'Formula': 'formula'
+  Medicamento: 'medicine',
+  Formula: 'formula'
 }

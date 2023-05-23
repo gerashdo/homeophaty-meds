@@ -1,0 +1,15 @@
+
+div.pill {
+    border-radius: 1rem;
+    color: white;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+}
+
+div.pill.primary {
+    background-color: var(--color-primary-lighter);
+}
+
+div.pill.secondary {
+    background-color: var(--color-secondary-lighter);
+}
