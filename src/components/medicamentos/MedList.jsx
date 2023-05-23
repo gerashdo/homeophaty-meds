@@ -1,43 +1,19 @@
-import { useEffect, useRef, useState } from 'react'
 import { CgTrash, CgPen } from 'react-icons/cg'
-import { useNavigate } from 'react-router-dom'
 
-import { useMedsStore } from '../../hooks'
 import { DialogModal } from '../iterface/DialogModal'
-import { useModal } from '../../hooks/useModal'
-import { searchStringInMed } from '../../helpers'
+import { useMedsList } from '../../hooks/useMedsList'
 
 import './med-list.css'
 
 export const MedList = ({ searchVariable }) => {
-  const { medicamentos, startDeleteMedicamento } = useMedsStore()
-  const { isOpen, closeModal, openModal } = useModal()
-  const [medsList, setMedsList] = useState(medicamentos)
-  const medicineIdToDelete = useRef('')
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    if (searchVariable) {
-      setMedsList(searchStringInMed(searchVariable, medicamentos))
-    } else {
-      setMedsList(medicamentos)
-    }
-  }, [medicamentos, searchVariable])
-
-  const setMedicineToDelete = (medId) => {
-    medicineIdToDelete.current = medId
-    openModal()
-  }
-
-  const deleteMedicine = () => {
-    if (!medicineIdToDelete.current) return
-    startDeleteMedicamento(medicineIdToDelete.current)
-    medicineIdToDelete.current = ''
-  }
-
-  const navigateToMedicine = (medId) => {
-    navigate(`/medicamentos/${medId}`)
-  }
+  const {
+    medsList,
+    isOpen,
+    navigateToMedicine,
+    setMedicineToDelete,
+    deleteMedicine,
+    closeModal
+  } = useMedsList(searchVariable)
 
   return (
     <>
