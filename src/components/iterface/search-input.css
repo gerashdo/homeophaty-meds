@@ -4,9 +4,7 @@ div.search-input {
     background-color: white;
     border-radius: 1rem;
     display: flex;
-    min-width: 50%;
     padding: 0rem 1rem;
-    /* margin-block: 1rem; */
 }
 
 div.search-input input {
