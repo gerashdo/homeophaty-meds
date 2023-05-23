@@ -1,27 +1,37 @@
 
-.med-list {
-    display: grid;
-    gap: 1.5rem;
-    grid-template-columns: repeat(4, 1fr);
-    margin-top: 2rem;
-    padding: 0 4rem;
+table.med-list {
+    margin-block: 3rem;
+    text-align: start;
+    width: 100%;
 }
 
-@media (max-width: 1444px){
-    .med-list {
-        grid-template-columns: repeat(3, 1fr);
-    }
+table.med-list thead tr th{
+    border-bottom: 0.2rem solid var(--color-gray-background);
 }
 
-@media (max-width: 1182px){
-    .med-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
+table.med-list tbody tr:hover {
+    background-color: var(--color-gray-background);
 }
 
-@media (max-width: 930px){
-    .med-list {
-        grid-template-columns: repeat(1, 1fr);
-        justify-items: center;
-    }
+table.med-list th {
+    padding: 1.5rem 1rem;
+}
+
+table.med-list td {
+    padding: 1rem 1rem;
+}
+
+table.med-list td.name {
+    cursor: pointer;
+}
+
+table.med-list tr th {
+    text-align: start;
+    font-size: var(--font-size-normal);
+    font-weight: var(--font-bold);
+}
+
+table.med-list tr td.actions {
+    display: flex;
+    gap: 0.25rem;
 }
