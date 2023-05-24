@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   isLoading: false,
   medicamentos: [],
-  searchValue: ''
+  searchValue: '',
+  isEditingMedicine: false
 }
 
 export const medicamentoSlice = createSlice({
@@ -31,6 +32,9 @@ export const medicamentoSlice = createSlice({
     },
     changeSearchValue: (state, action) => {
       state.searchValue = action.payload
+    },
+    changeEditingMedicine: (state, action) => {
+      state.isEditingMedicine = action.payload
     }
   }
 })
@@ -41,5 +45,6 @@ export const {
   addMedicamento,
   updateMedicamento,
   deleteMedicamento,
-  changeSearchValue
+  changeSearchValue,
+  changeEditingMedicine
 } = medicamentoSlice.actions
