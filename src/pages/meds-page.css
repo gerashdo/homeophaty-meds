@@ -1,8 +1,4 @@
 
-.meds .meds-list {
-    min-height: 100%;
-}
-
 section.header {
     display: flex;
     justify-content: flex-end;

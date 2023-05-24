@@ -54,9 +54,6 @@ export const MedsPage = () => {
             </button>
           </section>
           <section className='section meds-list'>
-            <MedList
-              searchVariable={searchValue}
-            />
             <div className='pagination'>
               <Paginate
                 totalPages={totalPages}
@@ -64,6 +61,9 @@ export const MedsPage = () => {
                 onClickItem={onClickPageItem}
               />
             </div>
+            <MedList
+              searchVariable={searchValue}
+            />
           </section>
           <Modal
             content={<NewMedForm onSave={closeModal} />}
