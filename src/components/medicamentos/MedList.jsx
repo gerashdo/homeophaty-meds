@@ -22,7 +22,7 @@ export const MedList = ({ searchVariable }) => {
       <table className='med-list' cellSpacing='0'>
         <thead>
           <tr>
-            <th>Nombre</th>
+            <th className='name'>Nombre</th>
             <th>CH</th>
             <th>Tipo</th>
             <th />

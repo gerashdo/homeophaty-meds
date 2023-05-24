@@ -23,6 +23,7 @@ table.med-list td {
 
 table.med-list td.name {
     cursor: pointer;
+    max-width: 8rem;
 }
 
 table.med-list tr th {
@@ -33,5 +34,6 @@ table.med-list tr th {
 
 table.med-list tr td.actions {
     display: flex;
+    font-size: var(--font-size-normal);
     gap: 0.25rem;
 }
