@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { changeEditingMedicine } from '../store/slices/medicamentos'
 import { TemplateSystemPage } from './TemplateSystemPage'
 import { MedDetail } from '../components/medicamentos/MedDetail'
+import { MedDetailEdit } from '../components/medicamentos/MedDetailEdit'
 import { getMedById } from '../helpers'
-import { NewMedForm } from '../components/medicamentos/NewMedForm'
 
 import './med-page.css'
-import { MedDetailEdit } from '../components/medicamentos/MedDetailEdit'
 
 export const MedPage = () => {
+  const dispatch = useDispatch()
   const { medId } = useParams()
-  const { medicamentos } = useSelector(state => state.medicamento)
+  const { medicamentos, isEditingMedicine } = useSelector(state => state.medicamento)
 
   const [medicamento, setMedicamento] = useState(null)
-  const [edit, setEdit] = useState(false)
 
   useEffect(() => {
     if (medicamentos) {
@@ -22,32 +23,39 @@ export const MedPage = () => {
     }
   }, [medicamentos, medId])
 
+  const setEditMedicine = (value) => {
+    dispatch(changeEditingMedicine(value))
+  }
+
   return (
     <TemplateSystemPage>
       <main className='med'>
         <section className='section med-detail-container'>
           {medicamento
-            ? edit
+            ? isEditingMedicine
               ? (<MedDetailEdit
                   medicamento={medicamento}
-                  onCancel={() => setEdit(false)}
+                  onCancel={() => setEditMedicine(false)}
                  />)
-              : (<>
-                <div className='align-content-end'>
-                  <button
-                    className='simple'
-                    onClick={() => setEdit(true)}
-                  >
-                    Editar medicamento
-                  </button>
-                </div>
-                <MedDetail
-                  medicamento={medicamento}
-                />
-              </>)
-            : (<div>
-              Loading
-            </div>)}
+              : (
+                <>
+                  <div className='align-content-end'>
+                    <button
+                      className='simple'
+                      onClick={() => setEditMedicine(true)}
+                    >
+                      Editar medicamento
+                    </button>
+                  </div>
+                  <MedDetail
+                    medicamento={medicamento}
+                  />
+                </>
+                )
+            : (
+              <div>
+                Loading
+              </div>)}
         </section>
       </main>
     </TemplateSystemPage>

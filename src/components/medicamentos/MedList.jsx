@@ -11,9 +11,10 @@ export const MedList = ({ searchVariable }) => {
   const {
     medsList,
     isOpen,
-    navigateToMedicine,
     setMedicineToDelete,
     deleteMedicine,
+    navigateEditMedicine,
+    navigateMedicineDetails,
     closeModal
   } = useMedsList(searchVariable)
 
@@ -34,7 +35,7 @@ export const MedList = ({ searchVariable }) => {
               <tr key={med._id}>
                 <td
                   className='name'
-                  onClick={() => navigateToMedicine(med._id)}
+                  onClick={() => navigateMedicineDetails(med._id)}
                 >
                   {med.name}
                 </td>
@@ -55,6 +56,7 @@ export const MedList = ({ searchVariable }) => {
                   </button>
                   <button
                     className='action'
+                    onClick={() => navigateEditMedicine(med._id)}
                   >
                     <CgPen />
                   </button>
