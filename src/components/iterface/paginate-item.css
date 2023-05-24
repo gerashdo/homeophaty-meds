@@ -2,25 +2,23 @@
 .paginate-item {
     align-items: center;
     background-color: var(--color-gray-background);
-    border-radius: 50%;
+    border-radius: 0.5rem;
     display: flex;
     font-weight: var(--font-bold);
-    height: 4rem;
     justify-content: center;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     cursor: pointer;
-    width: 4rem;
 }
 
 .paginate-item:hover{
     background-color: var(--color-gray-background-darker);
 }
 
-.active {
+.paginate-item.active {
     background-color: var(--color-primary);
     color: white;
 }
 
-.active:hover {
+.paginate-item.active:hover {
     background-color: var(--color-primary-darker);
 }
