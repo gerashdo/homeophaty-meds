@@ -40,12 +40,12 @@ div.med-data ul {
     width: 100%;
 }
 
-div.med-data form {
+div.med-data .med-prescription {
     min-width: 50%;
-    width: 80%;
+    width: 70%;
 }
 
-div.med-data form textarea {
+div.med-data .med-prescription form textarea {
     width: 100%;
     border: none;
     border-radius: 0.5rem;

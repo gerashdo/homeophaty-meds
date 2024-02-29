@@ -11,6 +11,7 @@
   --color-success: #D7FDF0;
   --color-gray-background: #f2f2f2;
   --color-gray-background-darker: #dadada;
+  --color-gray-background-darker-black: #989898;
   --color-negative: #A53F2B;
   --color-negative-darker: #8e3b2b;
   --color-negative-lighter: #b2523f;
@@ -142,6 +143,9 @@ input.interface {
 
 /* Utilities */
 button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 0;
   color: white;
   cursor: pointer;
@@ -173,6 +177,20 @@ button.negative:hover{
 
 button.negative:active{
   background-color: var(--color-negative-darker);
+}
+
+button.action {
+  background-color: transparent;
+  color: var(--color-gray-background-darker-black);
+  border-radius: 30px;
+}
+
+button.action:hover{
+  color: var(--color-black);
+}
+
+button.action:active{
+  color: var(--color-black);
 }
 
 button.simple {
