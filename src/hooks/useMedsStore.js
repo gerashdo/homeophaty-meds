@@ -132,6 +132,33 @@ export const useMedsStore = () => {
     }
   }
 
+  const startAddPrescription = async (medId, prescription) => {
+    try {
+      const response = await fetchAPI({
+        endpoint: `medicine/${medId}/prescriptions`,
+        data: { description: prescription },
+        method: 'POST',
+        token: authToken
+      })
+      const data = await response.json()
+
+      if (response.status === 201) {
+        dispatch(updateMedicamento(data.medicine))
+        dispatch(startAlert({
+          alertMessage: 'La prescripción ha sido agregada',
+          alertType: 'success'
+        }))
+      } else {
+        dispatch(startAlert(createContentErrorAlert(data)))
+      }
+    } catch (error) {
+      dispatch(startAlert({
+        alertMessage: 'Error interno, contacte al administrador',
+        alertType: 'error'
+      }))
+    }
+  }
+
   return {
     isLoading,
     page,
@@ -140,6 +167,7 @@ export const useMedsStore = () => {
     startLoadingMedicamentos,
     startAddNewMedicamento,
     startUpdateMedicamento,
-    startDeleteMedicamento
+    startDeleteMedicamento,
+    startAddPrescription
   }
 }

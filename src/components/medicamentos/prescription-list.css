@@ -1,0 +1,8 @@
+.hidden-btn {
+    display: none;
+}
+
+li:hover .hidden-btn {
+    display: flex;
+    transition: all 0.3s ease-in-out;
+}

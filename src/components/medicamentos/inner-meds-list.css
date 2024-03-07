@@ -1,0 +1,9 @@
+
+.delete-btn {
+    display: none;
+}
+
+li:hover .delete-btn {
+    display: block;
+    transition: all 0.3s ease-in-out;
+}

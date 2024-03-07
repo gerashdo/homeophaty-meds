@@ -22,7 +22,7 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue }) => 
 
   return (
     <div
-      className='dinamic-selector'
+      className='absolute bg-white rounded-md shadow z-20 w-72 inset-x-0 max-h-60 top-16'
     >
       <ul>
         {
@@ -31,6 +31,7 @@ export const DinamicSelector = ({ resetValues, valueForFilter, onSetValue }) => 
               <li
                 key={med._id}
                 onMouseDown={setSelectedValue}
+                className='hover:bg-gray-200 cursor-pointer p-2'
               >
                 {med.name} {med.ch}
               </li>
